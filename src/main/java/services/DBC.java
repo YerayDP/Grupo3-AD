@@ -24,7 +24,7 @@ public class DBC {
 	public static Connection createNewDBconnection() {
 		try  {	
 			conn = DriverManager.getConnection(
-					dbhost, "root", "");
+					dbhost, username, password);
 			System.out.println("Connected");
 		} catch (SQLException e) {
 			System.out.println("Cannot create database connection");
