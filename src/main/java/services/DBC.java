@@ -2,7 +2,9 @@ package services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 public class DBC {
 	
@@ -13,11 +15,14 @@ public class DBC {
 	
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		
-		createNewDBconnection();		
-	}
-	
+		//createNewDBconnection();
+		
+		UsersS us = new UsersS();
+		UsersS.insert();
+	  }
+
 	
 	
 	@SuppressWarnings("finally")
@@ -33,4 +38,7 @@ public class DBC {
 			return conn;	
 		}		
 	}
+	
+	
+	
 }
