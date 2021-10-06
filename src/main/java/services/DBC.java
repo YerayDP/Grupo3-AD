@@ -15,12 +15,13 @@ public class DBC {
 	
 
 	
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		
 		//createNewDBconnection();
 		
-		UsersS us = new UsersS();
-		UsersS.insert();
+		//UsersS.insert();
+		UsersS.update();
+		UsersS.select();
 	  }
 
 	
