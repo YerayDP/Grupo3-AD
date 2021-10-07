@@ -18,6 +18,10 @@ public class DBC {
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		
 		//createNewDBconnection();
+		//UsersS.insert();
+		UsersS.select();
+		UsersS.selectct(createNewDBconnection());
+		
 	  }
 
 	
