@@ -91,4 +91,20 @@ public class UsersS {
         
 }
 	
+	public static void delete() throws ClassNotFoundException {
+        String sql = "DELETE FROM users WHERE DNI = ?";
+
+        try (Connection conn = DBC.createNewDBconnection();
+                PreparedStatement consulta = conn.prepareStatement(sql)) {
+
+            // set the corresponding parameter
+        	consulta.setString(1, "49560848B");
+            // execute the delete statement
+        	consulta.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+	
 }
