@@ -94,32 +94,15 @@ public class Admin extends JFrame {
 		btnNewButton_2.setBounds(554, 278, 148, 77);
 		contentPane.add(btnNewButton_2);
 		
-		/*String a = "";
+		
 		Object[] b= null;
 		List<Empleados> f = UsersS.select(DBC.createNewDBconnection());
 		
-		for (int i = 0; i < f.size(); i++) 
-		{
-			
-			a += f.toString()+"\n";
-		}
 		b = f.toArray();
-		
+	
+	
 		JList<Object> list = new JList<>(b);
-		list.setBounds(135, 87, 534, 132);
-		contentPane.add(list);*/
-		
-		DefaultTableModel modelo  = new DefaultTableModel();
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Connection con = DBC.createNewDBconnection();
-		
-		String sql = "Select * from users";
-		
-		ps = con.prepareStatement(sql);
-		
-		rs = ps.executeQuery();
-		
-		//Result 
+		list.setBounds(10, 55, 765, 212);
+		contentPane.add(list);
 	}
 }

@@ -138,7 +138,7 @@ public class HotelesI extends JFrame {
 				String dni = textField.getText();
 				String nombre = textField_1.getText();
 				String apellidos = textField_2.getText();
-				String fecha_nacimiento = dateChooser.getDateFormatString();
+				Date fecha_nacimiento = (Date) dateChooser.getDate();
 				String poblacion = textField_4.getText();
 				String rol = "admin";
 				String username = textField_5.getText();

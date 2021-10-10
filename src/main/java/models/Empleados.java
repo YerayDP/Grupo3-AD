@@ -9,12 +9,12 @@ public class Empleados extends Users{
 	
 
 	public Empleados(String dni, String nombre, String apellidos, String poblacion, String rol,
-			String username, String password, String fecha_nacimiento) {
+			String username, String password, Date fecha_nacimiento) {
 		super(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
 	}
 
 	public Empleados(String dni, String nombre, String apellidos, String poblacion, String rol,
-			String username, String password, String fecha_nacimiento, String poblacion2) {
+			String username, String password, Date fecha_nacimiento, String poblacion2) {
 		super(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
 		poblacion = poblacion2;
 	}

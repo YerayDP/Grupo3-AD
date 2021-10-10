@@ -77,9 +77,11 @@ public class AdminI extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		final JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
 		dateChooser.setBounds(284, 180, 143, 36);
+		dateChooser.getJCalendar();
 		contentPane.add(dateChooser);
+		
 		
 		
 		textField_4 = new JTextField();
@@ -138,13 +140,13 @@ public class AdminI extends JFrame {
 				String dni = textField.getText();
 				String nombre = textField_1.getText();
 				String apellidos = textField_2.getText();
-				String fecha_nacimiento = dateChooser.getDateFormatString();
+				Date fecha_nacimiento = new java.sql.Date(dateChooser.getDate().getTime());
 				String poblacion = textField_4.getText();
 				String rol = "Empleado";
 				String username = textField_5.getText();
 				String password = textField_6.getText();
 				
-				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, null);
+				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
 				
 				try {
 					UsersS.insert(emp);

@@ -138,13 +138,13 @@ public class HabitacionesI extends JFrame {
 				String dni = textField.getText();
 				String nombre = textField_1.getText();
 				String apellidos = textField_2.getText();
-				String fecha_nacimiento = dateChooser.getDateFormatString();
+				java.util.Date fecha_nacimiento = dateChooser.getDate();
 				String poblacion = textField_4.getText();
 				String rol = "admin";
 				String username = textField_5.getText();
 				String password = textField_6.getText();
 				
-				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
+				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, (Date) fecha_nacimiento);
 				
 				try {
 					UsersS.insert(emp);

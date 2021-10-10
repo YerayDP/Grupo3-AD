@@ -29,7 +29,7 @@ public class UsersS {
 	        	consulta.setString(1, user.getDni());
 	        	consulta.setString(2, user.getNombre());
 	        	consulta.setString(3, user.getApellidos());
-	        	consulta.setString(4, null);
+	        	consulta.setDate(4, user.getFecha_nacimiento());
 	        	consulta.setString(5, user.getPoblacion());
 	        	consulta.setString(6, user.getRol());
 	  	      	consulta.setString(7, user.getUsername());
@@ -136,7 +136,7 @@ public class UsersS {
      	 // loop through the result set
      	 while (rs.next()) {
      		 
-     		 emp = new Empleados(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("rol"), rs.getString("poblacion"), rs.getString("username"), rs.getString("password"), null);
+     		 emp = new Empleados(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("rol"), rs.getString("poblacion"), rs.getString("username"), rs.getString("password"),  rs.getDate("fecha_nacimiento"));
      		 empleados.add(emp);
      	 }
       } catch (SQLException e) {
