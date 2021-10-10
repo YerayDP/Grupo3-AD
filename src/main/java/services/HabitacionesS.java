@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import models.Habitaciones;
+import models.Hoteles;
 
 public class HabitacionesS {
 
@@ -63,25 +68,31 @@ public class HabitacionesS {
         System.out.println("---");
     }
 	
-	public static void select() throws ClassNotFoundException{
-		
-        String sql = "SELECT * FROM habitaciones";
- 
-        try (Connection conn = DBC.createNewDBconnection();
-                PreparedStatement consulta = conn.prepareStatement(sql)){
-     
-       	 //
-       	 ResultSet rs  = consulta.executeQuery();
-       	 // loop through the result set
-       	 while (rs.next()) {
-       		 
-       		System.out.println(rs);
-       	 }
-        } catch (SQLException e) {
-       	 System.out.println(e.getMessage());
-        }
-        
-}
+	public static List<Habitaciones> select(Connection conexion) throws ClassNotFoundException{
+	      String sql = "SELECT * FROM habitaciones" ;
+
+	      Habitaciones ha = null;
+	      List<Habitaciones> habitaciones = new ArrayList<>();
+	      
+	      try {
+	   
+	    	  PreparedStatement consulta = conexion.prepareStatement(sql);
+	    	  
+	     	 //
+	     	 ResultSet rs  = consulta.executeQuery();
+	     	 // loop through the result set
+	     	 while (rs.next()) {
+	     		 
+	     		ha = new Habitaciones(rs.getInt("numHabitacion"), rs.getInt("precioNoche"), rs.getString("tipo"), rs.getString("extras"));
+	     		habitaciones.add(ha);
+	     	 }
+	      } catch (SQLException e) {
+	     	 System.out.println(e.getMessage());
+	      }
+	      
+	      return habitaciones;
+	      
+		 }
 	
 	public static void delete() throws ClassNotFoundException {
         String sql = "DELETE FROM users WHERE telefono = ?";

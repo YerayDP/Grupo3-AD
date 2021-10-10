@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.sql.Date;
+
 
 import models.Empleados;
 import models.Users;
@@ -27,7 +29,7 @@ public class UsersS {
 	        	consulta.setString(1, user.getDni());
 	        	consulta.setString(2, user.getNombre());
 	        	consulta.setString(3, user.getApellidos());
-	        	consulta.setDate(4, user.getFecha_nacimiento());
+	        	consulta.setString(4, user.getFecha_nacimiento());
 	        	consulta.setString(5, user.getPoblacion());
 	        	consulta.setString(6, user.getRol());
 	  	      	consulta.setString(7, user.getUsername());

@@ -11,16 +11,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import models.Habitaciones;
+import models.Empleados;
 import models.Hoteles;
 import services.DBC;
-import services.HabitacionesS;
 import services.HotelesS;
+import services.UsersS;
 
 import javax.swing.JButton;
 import javax.swing.JList;
 
-public class HabitacionesCRUD extends JFrame {
+public class HotelesCRUD extends JFrame {
 
 	private JPanel contentPane;
 
@@ -31,7 +31,7 @@ public class HabitacionesCRUD extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HabitacionesCRUD frame = new HabitacionesCRUD();
+					HotelesCRUD frame = new HotelesCRUD();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class HabitacionesCRUD extends JFrame {
 	 * Create the frame.
 	 * @throws ClassNotFoundException 
 	 */
-	public HabitacionesCRUD() throws ClassNotFoundException {
+	public HotelesCRUD() throws ClassNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 375);
 		contentPane = new JPanel();
@@ -60,7 +60,7 @@ public class HabitacionesCRUD extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				HabitacionesI ai = new HabitacionesI();
+				HotelesI ai = new HotelesI();
 				setVisible(false);
 				ai.setVisible(true);
 
@@ -76,22 +76,15 @@ public class HabitacionesCRUD extends JFrame {
 		contentPane.add(btnNewButton_3);
 
 		String a = "";
-		Object[] b= null;
-		List<Habitaciones> f = HabitacionesS.select(DBC.createNewDBconnection());
+		List<Hoteles> f = HotelesS.select(DBC.createNewDBconnection());
 		
 		for (int i = 0; i < f.size(); i++) 
 		{
-			
 			a += f.toString()+"\n";
 		}
-		b = f.toArray();
-	
-		TextArea textArea = new TextArea(a);
-		textArea.setBounds(10, 39, 534, 148);
-		contentPane.add(textArea);
 		
-		JList<Object> list = new JList<>(b);
-		list.setBounds(10, 193, 534, 132);
-		contentPane.add(list);
+		TextArea textArea = new TextArea(a);
+		textArea.setBounds(10, 39, 534, 286);
+		contentPane.add(textArea);
 	}
 }

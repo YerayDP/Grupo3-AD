@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-public class AdminI extends JFrame {
+public class HotelesI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -42,7 +42,7 @@ public class AdminI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminI frame = new AdminI();
+					HotelesI frame = new HotelesI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class AdminI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminI() {
+	public HotelesI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 682, 456);
 		contentPane = new JPanel();

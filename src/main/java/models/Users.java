@@ -5,9 +5,9 @@ import java.sql.Date;
 public class Users {
 
 	private String dni,nombre,apellidos,rol,username,password;
-	private Date fecha_nacimiento;
+	private String fecha_nacimiento;
 	public Users(String dni, String nombre, String apellidos, String poblacion, String rol,
-			String username, String password, Date fecha_nacimiento)
+			String username, String password, String fecha_nacimiento2)
 	{
 		this.dni = dni;
 		this.nombre = nombre;
@@ -15,7 +15,7 @@ public class Users {
 		this.rol = rol;
 		this.username = username;
 		this.password = password;
-		this.fecha_nacimiento = fecha_nacimiento;
+		this.fecha_nacimiento = fecha_nacimiento2;
 	}
 	
 	public String getDni() {
@@ -54,10 +54,10 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getFecha_nacimiento() {
+	public String getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
+	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
