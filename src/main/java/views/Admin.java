@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,6 +33,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.TextArea;
+import javax.swing.JScrollPane;
 
 public class Admin extends JFrame {
 
@@ -95,14 +97,52 @@ public class Admin extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		
-		Object[] b= null;
-		List<Empleados> f = UsersS.select(DBC.createNewDBconnection());
 		
-		b = f.toArray();
-	
-	
-		JList<Object> list = new JList<>(b);
-		list.setBounds(10, 55, 765, 212);
-		contentPane.add(list);
+		
+        
+        DefaultTableModel modelo  = new DefaultTableModel();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = DBC.createNewDBconnection();
+
+        String sql = "Select * from users";
+
+        ps = con.prepareStatement(sql);
+
+        rs = ps.executeQuery();
+
+        ResultSetMetaData rsMd = rs.getMetaData();
+
+        int cantidadColumnas = rsMd.getColumnCount();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellidos");
+        modelo.addColumn("Fecha_nacimiento");
+        modelo.addColumn("Poblacion");
+        modelo.addColumn("Username");
+        modelo.addColumn("Password");
+
+        while(rs.next())
+        {
+            Object[] filas = new Object[cantidadColumnas];
+
+            for (int i = 0; i < cantidadColumnas; i++) {
+                filas[i] = rs.getObject(i+1);
+            }
+            modelo.addRow(filas);
+        }
+
+
+        JTable table_1 = new JTable(modelo);
+        table_1.setBounds(152, 64, 483, 170);
+        
+        JScrollPane scrollPane = new JScrollPane();
+	    scrollPane.setBounds(108, 257, 594, -194);
+	    contentPane.add(scrollPane);
+        
+        scrollPane.setViewportView(table_1);
+        
 	}
 }
