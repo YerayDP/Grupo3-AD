@@ -140,11 +140,11 @@ public class AdminI extends JFrame {
 				String apellidos = textField_2.getText();
 				String fecha_nacimiento = dateChooser.getDateFormatString();
 				String poblacion = textField_4.getText();
-				String rol = "admin";
+				String rol = "Empleado";
 				String username = textField_5.getText();
 				String password = textField_6.getText();
 				
-				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
+				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, null);
 				
 				try {
 					UsersS.insert(emp);

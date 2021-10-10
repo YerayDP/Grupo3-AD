@@ -29,7 +29,7 @@ public class UsersS {
 	        	consulta.setString(1, user.getDni());
 	        	consulta.setString(2, user.getNombre());
 	        	consulta.setString(3, user.getApellidos());
-	        	consulta.setString(4, user.getFecha_nacimiento());
+	        	consulta.setString(4, null);
 	        	consulta.setString(5, user.getPoblacion());
 	        	consulta.setString(6, user.getRol());
 	  	      	consulta.setString(7, user.getUsername());
@@ -91,26 +91,6 @@ public class UsersS {
         }
     }
 	
-	/*public static void select() throws ClassNotFoundException{
-	
-    String sql = "SELECT * FROM users";
-
-    try (Connection conn = DBC.createNewDBconnection();
-            PreparedStatement consulta = conn.prepareStatement(sql)){
- 
-   	 //
-   	 ResultSet rs  = consulta.executeQuery();
-   	 // loop through the result set
-   	 while (rs.next()) {
-   		 
-   		System.out.println(rs);
-   	 }
-    } catch (SQLException e) {
-   	 System.out.println(e.getMessage());
-    }
-    
-}*/
-	
 	@SuppressWarnings("null")
 	public static void select()
 	{
@@ -164,36 +144,6 @@ public class UsersS {
       }
       
       return empleados;
-      
-	 }
-	
-	@SuppressWarnings("null")
-	public static void selectct(Connection conexion) throws ClassNotFoundException{
-      String sql = "SELECT * FROM users" ;
-
-      Empleados emp = null;
-      List<Empleados> empleados = new ArrayList<>();
-      
-      try {
-   
-    	  PreparedStatement consulta = conexion.prepareStatement(sql);
-    	  
-     	 //
-     	 ResultSet rs  = consulta.executeQuery();
-     	 // loop through the result set
-     	 while (rs.next()) {
-     		 
-     		 emp = new Empleados(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("rol"), rs.getString("poblacion"), rs.getString("username"), rs.getString("password"), null);
-     		 empleados.add(emp);
-     	 }
-      } catch (SQLException e) {
-     	 System.out.println(e.getMessage());
-      }
-      
-      for (Empleados empleados2 : empleados)
-      {
-    	  System.out.println(empleados2.getNombre());
-      }
       
 	 }
 	

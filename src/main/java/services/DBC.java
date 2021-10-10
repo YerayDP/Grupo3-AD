@@ -19,8 +19,8 @@ public class DBC {
 		
 		//createNewDBconnection();
 		//UsersS.insert();
-		UsersS.select();
-		UsersS.selectct(createNewDBconnection());
+		//UsersS.select();
+		//UsersS.selectct(createNewDBconnection());
 		
 	  }
 

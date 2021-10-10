@@ -6,15 +6,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import models.Empleados;
+import models.Habitaciones;
 import services.DBC;
+import services.HabitacionesS;
 import services.UsersS;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,8 +56,9 @@ public class Admin extends JFrame {
 	/**
 	 * Create the frame.
 	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
 	 */
-	public Admin() throws ClassNotFoundException {
+	public Admin() throws ClassNotFoundException, SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
@@ -84,16 +94,32 @@ public class Admin extends JFrame {
 		btnNewButton_2.setBounds(554, 278, 148, 77);
 		contentPane.add(btnNewButton_2);
 		
-		String a = "";
+		/*String a = "";
+		Object[] b= null;
 		List<Empleados> f = UsersS.select(DBC.createNewDBconnection());
 		
 		for (int i = 0; i < f.size(); i++) 
 		{
+			
 			a += f.toString()+"\n";
 		}
+		b = f.toArray();
 		
-		TextArea textArea = new TextArea(a);
-		textArea.setBounds(172, 69, 440, 150);
-		contentPane.add(textArea);
+		JList<Object> list = new JList<>(b);
+		list.setBounds(135, 87, 534, 132);
+		contentPane.add(list);*/
+		
+		DefaultTableModel modelo  = new DefaultTableModel();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = DBC.createNewDBconnection();
+		
+		String sql = "Select * from users";
+		
+		ps = con.prepareStatement(sql);
+		
+		rs = ps.executeQuery();
+		
+		//Result 
 	}
 }
