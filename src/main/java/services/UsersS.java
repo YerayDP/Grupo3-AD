@@ -122,7 +122,8 @@ public class UsersS {
 	
 	@SuppressWarnings("null")
 	public static List<Empleados> select(Connection conexion) throws ClassNotFoundException{
-      String sql = "SELECT * FROM users" ;
+      //String sql = "SELECT * FROM users" ;
+      String sql = "SELECT id,dni,nombre,apellidos,rol,poblacion,fecha_nacimiento,username,password FROM users" ;
 
       Empleados emp = null;
       List<Empleados> empleados = new ArrayList<>();
@@ -138,6 +139,7 @@ public class UsersS {
      		 
      		 emp = new Empleados(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("rol"), rs.getString("poblacion"), rs.getString("username"), rs.getString("password"),  rs.getDate("fecha_nacimiento"));
      		 empleados.add(emp);
+     		 System.out.println(emp.getPoblacion());
      	 }
       } catch (SQLException e) {
      	 System.out.println(e.getMessage());

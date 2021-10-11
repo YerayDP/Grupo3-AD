@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -32,10 +33,12 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import java.awt.TextArea;
+import javax.swing.JTextField;
 
 public class Admin extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -94,15 +97,57 @@ public class Admin extends JFrame {
 		btnNewButton_2.setBounds(554, 278, 148, 77);
 		contentPane.add(btnNewButton_2);
 		
+		JTable table_1 = new JTable();
+        table_1.setBounds(152, 64, 483, 170);
+        contentPane.add(table_1);
 		
-		Object[] b= null;
-		List<Empleados> f = UsersS.select(DBC.createNewDBconnection());
-		
-		b = f.toArray();
-	
-	
-		JList<Object> list = new JList<>(b);
-		list.setBounds(10, 55, 765, 212);
-		contentPane.add(list);
+		DefaultTableModel modelo  = (DefaultTableModel) table_1.getModel();
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = DBC.createNewDBconnection();
+        
+        //String dni = modelo.getValueAt(table_1.getSelectedRow(), 0).toString();
+
+        String sql = "Select * from users";
+
+        ps = con.prepareStatement(sql);
+
+        rs = ps.executeQuery();
+
+        ResultSetMetaData rsMd = rs.getMetaData();
+
+        int cantidadColumnas = rsMd.getColumnCount();
+
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Dni");
+
+
+        while(rs.next())
+        {
+            Object[] filas = new Object[cantidadColumnas];
+
+            for (int i = 0; i < cantidadColumnas; i++) {
+                filas[i] = rs.getObject(i+1);
+            }
+            modelo.addRow(filas);
+        }
+
+        textField = new JTextField();
+        textField.setBounds(668, 90, 96, 19);
+        contentPane.add(textField);
+        textField.setColumns(10);
+        
+        /*int a = table_1.getSelectedRow();
+        
+        textField.setText(modelo.getValueAt(a, 8).toString());*/
+
 	}
 }
