@@ -109,7 +109,7 @@ public class Admin extends JFrame {
         
         //String dni = modelo.getValueAt(table_1.getSelectedRow(), 0).toString();
 
-        String sql = "Select * from users";
+        String sql = "Select id,dni,nombre,apellidos,fecha_nacimiento,poblacion,username,password from users";
 
         ps = con.prepareStatement(sql);
 
@@ -119,7 +119,6 @@ public class Admin extends JFrame {
 
         int cantidadColumnas = rsMd.getColumnCount();
 
-        modelo.addColumn("Dni");
         modelo.addColumn("Dni");
         modelo.addColumn("Dni");
         modelo.addColumn("Dni");

@@ -66,7 +66,7 @@ public class ReservaI extends JFrame {
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(250, 80, 163, 36);
+		textField_1.setBounds(270, 80, 143, 36);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -76,7 +76,7 @@ public class ReservaI extends JFrame {
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(245, 177, 195, 58);
+		textField_3.setBounds(260, 177, 153, 32);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 	}
