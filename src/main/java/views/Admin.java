@@ -105,7 +105,7 @@ public class Admin extends JFrame {
         ResultSet rs = null;
         Connection con = DBC.createNewDBconnection();
 
-        String sql = "Select * from users";
+        String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users";
 
         ps = con.prepareStatement(sql);
 
@@ -124,6 +124,9 @@ public class Admin extends JFrame {
         modelo.addColumn("Username");
         modelo.addColumn("Password");
 
+   
+
+
         while(rs.next())
         {
             Object[] filas = new Object[cantidadColumnas];
@@ -136,13 +139,8 @@ public class Admin extends JFrame {
 
 
         JTable table_1 = new JTable(modelo);
-        table_1.setBounds(152, 64, 483, 170);
-        
-        JScrollPane scrollPane = new JScrollPane();
-	    scrollPane.setBounds(108, 257, 594, -194);
-	    contentPane.add(scrollPane);
-        
-        scrollPane.setViewportView(table_1);
+        table_1.setBounds(50, 48, 690, 220);
+        contentPane.add(table_1);
         
 	}
 }
