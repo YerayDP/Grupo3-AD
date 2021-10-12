@@ -112,4 +112,29 @@ public class HotelesS {
         }
     }
 	
+	public static List<Integer> ids(Connection conexion) throws ClassNotFoundException{
+	      String sql = "SELECT id FROM hoteles" ;
+
+	      List<Integer> ids = new ArrayList<>();
+	      
+	      try {
+	   
+	    	  PreparedStatement consulta = conexion.prepareStatement(sql);
+	    	  
+	     	 //
+	     	 ResultSet rs  = consulta.executeQuery();
+	     	 // loop through the result set
+	     	 while (rs.next()) {
+	     		 
+	     		int a = rs.getInt("id_hotel");
+	     		ids.add(a);
+	     	 }
+	      } catch (SQLException e) {
+	     	 System.out.println(e.getMessage());
+	      }
+	      
+	      return ids;
+	      
+		 }
+	
 }

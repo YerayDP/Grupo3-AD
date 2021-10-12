@@ -21,6 +21,7 @@ public class DBC {
 		//UsersS.insert();
 		//UsersS.select();
 		//UsersS.selectct(createNewDBconnection());
+		ComentariosS.Hoteles(createNewDBconnection());
 		
 	  }
 

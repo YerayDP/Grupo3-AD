@@ -77,7 +77,7 @@ public class AdminI extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		final JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+		final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dateChooser.setBounds(284, 180, 143, 36);
 		dateChooser.getJCalendar();
 		contentPane.add(dateChooser);
@@ -146,9 +146,14 @@ public class AdminI extends JFrame {
 				String username = textField_5.getText();
 				String password = textField_6.getText();
 				
+<<<<<<< HEAD
 				Empleados emp = new Empleados(dni, nombre, apellidos, null, rol, username, password, fecha_nacimiento);
 				emp.setPoblacion(poblacion);
 				System.out.println(poblacion);
+=======
+				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
+				emp.setPoblacion(poblacion);
+>>>>>>> branch 'master' of https://github.com/YerayDP/Grupo3-AD.git
 				try {
 					UsersS.insert(emp);
 					setVisible(false);

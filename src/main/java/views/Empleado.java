@@ -6,9 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 import javax.swing.JButton;
 
-public class Cliente extends JFrame {
+public class Empleado extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +20,7 @@ public class Cliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cliente frame = new Cliente();
+					Empleado frame = new Empleado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,28 +32,17 @@ public class Cliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Cliente() {
+	public Empleado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 801, 417);
+		setBounds(100, 100, 682, 456);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Reservar habitacion");
-		btnNewButton.setBounds(74, 280, 132, 56);
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(47, 322, 112, 29);
 		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Cancelar reserva");
-		btnNewButton_1.setBounds(241, 280, 132, 56);
-		contentPane.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Historial de reservas");
-		btnNewButton_2.setBounds(409, 280, 132, 56);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Valorar hotel");
-		btnNewButton_3.setBounds(583, 280, 132, 56);
-		contentPane.add(btnNewButton_3);
 	}
+	
 }

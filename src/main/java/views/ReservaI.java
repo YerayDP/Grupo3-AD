@@ -2,12 +2,22 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import models.Empleados;
+import models.Reservas;
+import services.UsersS;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class ReservaI extends JFrame {
 
@@ -79,5 +89,21 @@ public class ReservaI extends JFrame {
 		textField_3.setBounds(260, 177, 153, 32);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(260, 250, 147, 41);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				String id_hotel = textField.getText();
+				int id_hotel2 = Integer.valueOf (id_hotel);
+				
+				//Reservas r = new Reservas(id_hotel2,);
+							
+			}
+		});
 	}
 }
