@@ -145,9 +145,10 @@ public class AdminI extends JFrame {
 				String rol = "Empleado";
 				String username = textField_5.getText();
 				String password = textField_6.getText();
-				
+
 				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
 				emp.setPoblacion(poblacion);
+
 				try {
 					UsersS.insert(emp);
 					setVisible(false);
