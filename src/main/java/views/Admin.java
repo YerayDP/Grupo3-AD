@@ -141,57 +141,5 @@ public class Admin extends JFrame {
             modelo.addRow(filas);
         }
 
-        textField = new JTextField();
-        textField.setBounds(668, 90, 96, 19);
-        contentPane.add(textField);
-        textField.setColumns(10);
-        
-        /*int a = table_1.getSelectedRow();
-        
-        textField.setText(modelo.getValueAt(a, 8).toString());*/
-		
-		
-        
-        DefaultTableModel modelo  = new DefaultTableModel();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = DBC.createNewDBconnection();
-
-        String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users";
-
-        ps = con.prepareStatement(sql);
-
-        rs = ps.executeQuery();
-
-        ResultSetMetaData rsMd = rs.getMetaData();
-
-        int cantidadColumnas = rsMd.getColumnCount();
-
-        modelo.addColumn("ID");
-        modelo.addColumn("DNI");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellidos");
-        modelo.addColumn("Fecha_nacimiento");
-        modelo.addColumn("Poblacion");
-        modelo.addColumn("Username");
-        modelo.addColumn("Password");
-
-   
-
-
-        while(rs.next())
-        {
-            Object[] filas = new Object[cantidadColumnas];
-
-            for (int i = 0; i < cantidadColumnas; i++) {
-                filas[i] = rs.getObject(i+1);
-            }
-            modelo.addRow(filas);
-        }
-
-
-        JTable table_1 = new JTable(modelo);
-        table_1.setBounds(50, 48, 690, 220);
-        contentPane.add(table_1);
 	}
 }

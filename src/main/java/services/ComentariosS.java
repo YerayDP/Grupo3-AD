@@ -35,9 +35,9 @@ public class ComentariosS {
 	}
 	
 	@SuppressWarnings("null")
-	public static List<Comentarios> comentarios(Connection conexion, String hotel) throws ClassNotFoundException{
+	public static List<Comentarios> comentarios(Connection conexion, int hotel) throws ClassNotFoundException{
       //String sql = "SELECT * FROM users" ;
-      String sql = "SELECT usuario_id, comentario FROM comentarios WHERE hotel_id = ?" ;
+      String sql = "SELECT id_hotel,id_cliente,comentario FROM comentarios WHERE id_hotel = ?" ;
 
       Comentarios com = null;
       List<Comentarios> comentarios = new ArrayList<>();
@@ -47,14 +47,14 @@ public class ComentariosS {
     	  PreparedStatement consulta = conexion.prepareStatement(sql);
     	  
     	   // set the value
-    	 	 consulta.setString(1,hotel);
+    	 	 consulta.setInt(1,hotel);
     	  
      	 //
      	 ResultSet rs  = consulta.executeQuery();
      	 // loop through the result set
      	 while (rs.next()) {
      		 
-     		 com = new Comentarios(rs.getInt("hotel_id"),rs.getInt("usuario_id"),rs.getString("comentario"));
+     		 com = new Comentarios(rs.getInt("id_hotel"),rs.getInt("id_cliente"),rs.getString("comentario"));
      		 comentarios.add(com);
      	 }
       } catch (SQLException e) {

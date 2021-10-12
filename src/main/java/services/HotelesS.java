@@ -126,7 +126,7 @@ public class HotelesS {
 	     	 // loop through the result set
 	     	 while (rs.next()) {
 	     		 
-	     		int a = rs.getInt("id_hotel");
+	     		int a = rs.getInt("id");
 	     		ids.add(a);
 	     	 }
 	      } catch (SQLException e) {

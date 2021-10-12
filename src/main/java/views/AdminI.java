@@ -145,15 +145,10 @@ public class AdminI extends JFrame {
 				String rol = "Empleado";
 				String username = textField_5.getText();
 				String password = textField_6.getText();
-				
-<<<<<<< HEAD
-				Empleados emp = new Empleados(dni, nombre, apellidos, null, rol, username, password, fecha_nacimiento);
-				emp.setPoblacion(poblacion);
-				System.out.println(poblacion);
-=======
+
 				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
 				emp.setPoblacion(poblacion);
->>>>>>> branch 'master' of https://github.com/YerayDP/Grupo3-AD.git
+
 				try {
 					UsersS.insert(emp);
 					setVisible(false);
