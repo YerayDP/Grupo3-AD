@@ -11,8 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import models.Empleados;
 import models.Reservas;
+import services.ReservasS;
 import services.UsersS;
 
 import javax.swing.JLabel;
@@ -26,6 +29,8 @@ public class ReservaI extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -54,54 +59,73 @@ public class ReservaI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Hotel");
-		lblNewLabel.setBounds(98, 38, 128, 32);
+		
+		
+		final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dateChooser.setBounds(247, 179, 147, 32);
+		dateChooser.getJCalendar();
+		contentPane.add(dateChooser);
+		
+		final JDateChooser dateChooser2 = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		
+		dateChooser2.setBounds(247, 136, 147, 32);
+		dateChooser2.getJCalendar();
+		contentPane.add(dateChooser2);;
+		
+		
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(247, 284, 147, 41);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Fecha_inicio:");
+		lblNewLabel.setBounds(164, 179, 73, 32);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Fecha de entrada");
-		lblNewLabel_1.setBounds(93, 80, 147, 32);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblFechafin = new JLabel("Fecha_fin:");
+		lblFechafin.setBounds(164, 136, 59, 32);
+		contentPane.add(lblFechafin);
 		
-		JLabel lblNewLabel_2 = new JLabel("Fecha de salida");
-		lblNewLabel_2.setBounds(87, 122, 142, 50);
-		contentPane.add(lblNewLabel_2);
+		JLabel lblHotel = new JLabel("Hotel:");
+		lblHotel.setBounds(164, 50, 38, 32);
+		contentPane.add(lblHotel);
 		
-		JLabel lblNewLabel_3 = new JLabel("Habitacion");
-		lblNewLabel_3.setBounds(94, 177, 189, 32);
-		contentPane.add(lblNewLabel_3);
-		
-		textField = new JTextField();
-		textField.setBounds(260, 34, 147, 36);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		JLabel lblHabitacin = new JLabel("Habitación:");
+		lblHabitacin.setBounds(164, 93, 59, 32);
+		contentPane.add(lblHabitacin);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(270, 80, 143, 36);
+		textField_1.setBounds(247, 93, 147, 32);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(260, 122, 153, 41);
-		contentPane.add(textField_2);
 		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(260, 177, 153, 32);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(260, 250, 147, 41);
-		contentPane.add(btnNewButton);
+		textField_2.setBounds(247, 50, 147, 32);
+		contentPane.add(textField_2);
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				String id_hotel = textField.getText();
-				int id_hotel2 = Integer.valueOf (id_hotel);
 				
-				//Reservas r = new Reservas(id_hotel2,);
+				int hotel = Integer.parseInt(textField_1.getText());
+				Date fecha_inicio = new java.sql.Date(dateChooser.getDate().getTime());
+				Date fecha_fin = new java.sql.Date(dateChooser.getDate().getTime());
+				int habitacion = Integer.parseInt(textField_2.getText());
+
+				Reservas res = new Reservas(1,hotel,habitacion,fecha_inicio,fecha_fin);
+
+				try {
+					ReservasS.insert(res);
+					setVisible(false);
+					//
+					//Cliente
+					//
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 							
 			}
 		});

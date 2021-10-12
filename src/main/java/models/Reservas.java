@@ -4,13 +4,13 @@ import java.sql.Date;
 
 public class Reservas {
 
-	private int id_hotel, id_cliente, habitacion;
+	private int id_hotel, id_cliente, id_habitacion;
 	private Date fecha_entrada, fecha_salida;
-	public Reservas(int id_hotel, int id_cliente, int habitacion, Date fecha_entrada, Date fecha_salida) {
+	public Reservas(int id_hotel, int id_cliente, int id_habitacion, Date fecha_entrada, Date fecha_salida) {
 		super();
 		this.id_hotel = id_hotel;
 		this.id_cliente = id_cliente;
-		this.habitacion = habitacion;
+		this.id_habitacion = id_habitacion;
 		this.fecha_entrada = fecha_entrada;
 		this.fecha_salida = fecha_salida;
 	}
@@ -26,11 +26,11 @@ public class Reservas {
 	public void setId_cliente(int id_cliente) {
 		this.id_cliente = id_cliente;
 	}
-	public int getHabitacion() {
-		return habitacion;
+	public int getId_Habitacion() {
+		return id_habitacion;
 	}
-	public void setHabitacion(int habitacion) {
-		this.habitacion = habitacion;
+	public void setId_Habitacion(int id_habitacion) {
+		this.id_habitacion = id_habitacion;
 	}
 	public Date getFecha_entrada() {
 		return fecha_entrada;

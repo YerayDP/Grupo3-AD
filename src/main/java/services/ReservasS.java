@@ -14,16 +14,16 @@ public class ReservasS {
 	public static void insert(Reservas r) throws SQLException
 	{
 		
-	        String sql = "INSERT INTO reserva(id_hotel,id_cliente,fecha_entrada,fecha_salida,habitacion) VALUES(?,?,?,?,?)";
+	        String sql = "INSERT INTO reserva(id_hotel,id_cliente,fecha_entrada,fecha_salida,id_habitacion) VALUES(?,?,?,?,?)";
 
 	        try (Connection conn = DBC.createNewDBconnection();
 	                PreparedStatement consulta = conn.prepareStatement(sql)) {
 	        		        	
 	        	consulta.setInt(1, r.getId_hotel());
-	        	consulta.setInt(2, r.getId_cliente());
+	        	consulta.setInt(2, 1);
 	        	consulta.setDate(3, r.getFecha_entrada());
-	        	consulta.setDate(3, r.getFecha_salida());
-	        	consulta.setInt(5, r.getHabitacion());
+	        	consulta.setDate(4, r.getFecha_salida());
+	        	consulta.setInt(5, r.getId_Habitacion());
 	            consulta.executeUpdate();
 	            
 	        } catch (SQLException e) {
