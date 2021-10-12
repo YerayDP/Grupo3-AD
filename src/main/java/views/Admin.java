@@ -146,14 +146,14 @@ public class Admin extends JFrame {
 					pst.execute();
 					modelo.fireTableDataChanged();
 					JTable table_2 = new JTable(modelo);
-					table_1.setBounds(50, 48, 690, 220);
+					table_2.setBounds(50, 48, 690, 220);
 					
 					
 					contentPane.add(table_2);
 					contentPane.invalidate();
 					contentPane.validate();
 					contentPane.repaint();
-					JOptionPane.showMessageDialog(null, "Deleted");
+					JOptionPane.showMessageDialog(null, "Borrado");
 					setVisible(false);
 					Admin main = new Admin();
 
@@ -170,6 +170,65 @@ public class Admin extends JFrame {
 		JButton btnNewButton_2 = new JButton("Modificar");
 		btnNewButton_2.setBounds(554, 278, 148, 77);
 		contentPane.add(btnNewButton_2);
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int sr = table_1.getSelectedRow();
+				String id = modelo.getValueAt(sr, 0).toString();
+				String dni = modelo.getValueAt(sr, 1).toString();
+				String nombre = modelo.getValueAt(sr, 2).toString();
+				String apellidos = modelo.getValueAt(sr, 3).toString();
+				String fecha_nacimiento = modelo.getValueAt(sr, 4).toString();
+				String poblacion = modelo.getValueAt(sr, 5).toString();
+				String username = modelo.getValueAt(sr, 6).toString();
+				String password = modelo.getValueAt(sr, 7).toString();
+		
+				String NewId= JOptionPane.showInputDialog(null,"Introduzca nuevo ID",id);
+				String NewDNI= JOptionPane.showInputDialog(null,"Introduzca nuevo DNI",dni);
+				String NewNombre= JOptionPane.showInputDialog(null,"Introduzca nuevo Nombre",nombre);
+				String NewApellidos= JOptionPane.showInputDialog(null,"Introduzca nuevo Apellidos",apellidos);
+				String NewFecha_nacimiento= JOptionPane.showInputDialog(null,"Introduzca nuevo Fecha de nacimiento",fecha_nacimiento);
+				String NewPoblacion= JOptionPane.showInputDialog(null,"Introduzca nuevo poblacion",poblacion);
+				String NewUsername= JOptionPane.showInputDialog(null,"Introduzca nuevo username",username);
+				String NewPassword= JOptionPane.showInputDialog(null,"Introduzca nuevo password",password);
+				
+
+				String sql = "UPDATE users\r\n"
+						+ "SET ID = " + NewId + " , dni = " + NewDNI + " , nombre = '" + NewNombre + "' , apellidos = '" + NewApellidos + 
+						"' , fecha_nacimiento = '" + NewFecha_nacimiento + "' , poblacion = '" + NewPoblacion + "' , username = '" + NewUsername + "' , password = '" + NewPassword +"'" ;
+			
+				try {
+					PreparedStatement pst = con.prepareStatement(sql);
+					pst.execute();
+					modelo.fireTableDataChanged();
+					JTable table_2 = new JTable(modelo);
+					table_2.setBounds(50, 48, 690, 220);
+					
+					
+					contentPane.add(table_2);
+					contentPane.invalidate();
+					contentPane.validate();
+					contentPane.repaint();
+					JOptionPane.showMessageDialog(null, "Actualizado");
+					setVisible(false);
+					Admin main = new Admin();
+
+					main.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
+
+			}
+		});
 
 	}
 }
