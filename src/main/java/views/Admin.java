@@ -188,9 +188,9 @@ public class Admin extends JFrame {
 				String NewId= JOptionPane.showInputDialog(null,"Introduzca nuevo ID",id);
 				String NewDNI= JOptionPane.showInputDialog(null,"Introduzca nuevo DNI",dni);
 				String NewNombre= JOptionPane.showInputDialog(null,"Introduzca nuevo Nombre",nombre);
-				String NewApellidos= JOptionPane.showInputDialog(null,"Introduzca nuevo Apellidos",apellidos);
-				String NewFecha_nacimiento= JOptionPane.showInputDialog(null,"Introduzca nuevo Fecha de nacimiento",fecha_nacimiento);
-				String NewPoblacion= JOptionPane.showInputDialog(null,"Introduzca nuevo poblacion",poblacion);
+				String NewApellidos= JOptionPane.showInputDialog(null,"Introduzca nuevos Apellidos",apellidos);
+				String NewFecha_nacimiento= JOptionPane.showInputDialog(null,"Introduzca nueva Fecha de nacimiento",fecha_nacimiento);
+				String NewPoblacion= JOptionPane.showInputDialog(null,"Introduzca nueva poblacion",poblacion);
 				String NewUsername= JOptionPane.showInputDialog(null,"Introduzca nuevo username",username);
 				String NewPassword= JOptionPane.showInputDialog(null,"Introduzca nuevo password",password);
 				
