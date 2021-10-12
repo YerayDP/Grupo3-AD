@@ -16,6 +16,7 @@ import services.UsersS;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,90 +59,117 @@ public class Admin extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws ClassNotFoundException 
-	 * @throws SQLException 
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
 	 */
 	public Admin() throws ClassNotFoundException, SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
+		setLocationRelativeTo( null );
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Empleados");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
 		lblNewLabel.setBounds(353, 10, 101, 53);
 		contentPane.add(lblNewLabel);
-		
+
 		JButton btnNewButton = new JButton("Insertar");
 		btnNewButton.setBounds(108, 278, 148, 77);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				AdminI ai = new AdminI();
 				setVisible(false);
 				ai.setVisible(true);
-							
+
 			}
 		});
-		
+
+		final DefaultTableModel modelo = new DefaultTableModel();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		final Connection con = DBC.createNewDBconnection();
+
+		String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users";
+
+		ps = con.prepareStatement(sql);
+
+		rs = ps.executeQuery();
+
+		ResultSetMetaData rsMd = rs.getMetaData();
+
+		int cantidadColumnas = rsMd.getColumnCount();
+
+		modelo.addColumn("ID");
+		modelo.addColumn("DNI");
+		modelo.addColumn("Nombre");
+		modelo.addColumn("Apellidos");
+		modelo.addColumn("Fecha_nacimiento");
+		modelo.addColumn("Poblacion");
+		modelo.addColumn("Username");
+		modelo.addColumn("Password");
+
+		while (rs.next()) {
+			Object[] filas = new Object[cantidadColumnas];
+
+			for (int i = 0; i < cantidadColumnas; i++) {
+				filas[i] = rs.getObject(i + 1);
+			}
+			modelo.addRow(filas);
+		}
+
+		final JTable table_1 = new JTable(modelo);
+		table_1.setBounds(50, 48, 690, 220);
+		contentPane.add(table_1);
+
 		JButton btnNewButton_1 = new JButton("Borrar");
 		btnNewButton_1.setBounds(335, 278, 148, 77);
 		contentPane.add(btnNewButton_1);
-		
+		btnNewButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				final Connection conD = DBC.createNewDBconnection();
+
+				int row = table_1.getSelectedRow();
+				String cell = table_1.getModel().getValueAt(row, 0).toString();
+				String sql = "DELETE FROM users where id = " + cell;
+				try {
+					PreparedStatement pst = conD.prepareStatement(sql);
+					pst.execute();
+					modelo.fireTableDataChanged();
+					JTable table_2 = new JTable(modelo);
+					table_1.setBounds(50, 48, 690, 220);
+					
+					
+					contentPane.add(table_2);
+					contentPane.invalidate();
+					contentPane.validate();
+					contentPane.repaint();
+					JOptionPane.showMessageDialog(null, "Deleted");
+					setVisible(false);
+					Admin main = new Admin();
+
+					main.setVisible(true);
+
+				} catch (Exception e2) {
+					// TODO: handle exception
+				}
+
+			}
+
+		});
+
 		JButton btnNewButton_2 = new JButton("Modificar");
 		btnNewButton_2.setBounds(554, 278, 148, 77);
 		contentPane.add(btnNewButton_2);
-		
-		
-		
-		
-        
-        DefaultTableModel modelo  = new DefaultTableModel();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = DBC.createNewDBconnection();
 
-        String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users";
-
-        ps = con.prepareStatement(sql);
-
-        rs = ps.executeQuery();
-
-        ResultSetMetaData rsMd = rs.getMetaData();
-
-        int cantidadColumnas = rsMd.getColumnCount();
-
-        modelo.addColumn("ID");
-        modelo.addColumn("DNI");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Apellidos");
-        modelo.addColumn("Fecha_nacimiento");
-        modelo.addColumn("Poblacion");
-        modelo.addColumn("Username");
-        modelo.addColumn("Password");
-
-   
-
-
-        while(rs.next())
-        {
-            Object[] filas = new Object[cantidadColumnas];
-
-            for (int i = 0; i < cantidadColumnas; i++) {
-                filas[i] = rs.getObject(i+1);
-            }
-            modelo.addRow(filas);
-        }
-
-
-        JTable table_1 = new JTable(modelo);
-        table_1.setBounds(50, 48, 690, 220);
-        contentPane.add(table_1);
-        
 	}
 }
