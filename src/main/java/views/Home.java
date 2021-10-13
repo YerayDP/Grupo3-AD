@@ -44,7 +44,7 @@ public class Home extends JFrame {
 		
 		JLabel lblNewLabel_7 = new JLabel("H");
 		lblNewLabel_7.setBackground(Color.WHITE);
-		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\Pablo\\eclipse-workspace\\Grupo3_AD\\resources\\icon.jpg"));
+		lblNewLabel_7.setIcon(icono);
 		lblNewLabel_7.setBounds(10, 20, 132, 180);
 		contentPane.add(lblNewLabel_7);
 		
