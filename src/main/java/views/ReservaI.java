@@ -67,7 +67,6 @@ public class ReservaI extends JFrame {
 		contentPane.add(dateChooser);
 		
 		final JDateChooser dateChooser2 = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		
 		dateChooser2.setBounds(247, 136, 147, 32);
 		dateChooser2.getJCalendar();
 		contentPane.add(dateChooser2);;
@@ -79,11 +78,11 @@ public class ReservaI extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Fecha_inicio:");
-		lblNewLabel.setBounds(164, 179, 73, 32);
+		lblNewLabel.setBounds(164, 136, 73, 32);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblFechafin = new JLabel("Fecha_fin:");
-		lblFechafin.setBounds(164, 136, 59, 32);
+		lblFechafin.setBounds(164, 179, 59, 32);
 		contentPane.add(lblFechafin);
 		
 		JLabel lblHotel = new JLabel("Hotel:");
@@ -110,7 +109,7 @@ public class ReservaI extends JFrame {
 				
 				
 				int hotel = Integer.parseInt(textField_1.getText());
-				Date fecha_inicio = new java.sql.Date(dateChooser.getDate().getTime());
+				Date fecha_inicio = new java.sql.Date(dateChooser2.getDate().getTime());
 				Date fecha_fin = new java.sql.Date(dateChooser.getDate().getTime());
 				int habitacion = Integer.parseInt(textField_2.getText());
 
@@ -119,6 +118,9 @@ public class ReservaI extends JFrame {
 				try {
 					ReservasS.insert(res);
 					setVisible(false);
+					Cliente cl = new Cliente();
+					setVisible(false);
+					cl.setVisible(true);
 					//
 					//Cliente
 					//

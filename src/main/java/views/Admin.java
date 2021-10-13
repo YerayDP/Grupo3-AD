@@ -124,6 +124,8 @@ public class Admin extends JFrame {
 			}
 			modelo.addRow(filas);
 		}
+		
+		
 
 		final JTable table_1 = new JTable(modelo);
 		table_1.setBounds(50, 48, 690, 220);
