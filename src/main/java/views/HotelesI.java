@@ -18,6 +18,8 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import models.Empleados;
+import models.Hoteles;
+import services.HotelesS;
 import services.UsersS;
 
 import javax.swing.JTextField;
@@ -77,53 +79,37 @@ public class HotelesI extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		dateChooser.setBounds(284, 180, 143, 36);
-		contentPane.add(dateChooser);
-		
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(284, 226, 143, 36);
+		textField_4.setBounds(284, 180, 143, 36);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
-		textField_5.setBounds(284, 272, 143, 36);
+		textField_5.setBounds(284, 226, 143, 36);
 		contentPane.add(textField_5);
 		textField_5.setColumns(10);
-		
-		textField_6 = new JPasswordField();
-		textField_6.setBounds(284, 318, 143, 36);
-		contentPane.add(textField_6);
-		textField_6.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("Dni");
+
+		JLabel lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setBounds(10, 42, 250, 36);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		JLabel lblNewLabel_1 = new JLabel("Descripcion");
 		lblNewLabel_1.setBounds(10, 88, 250, 39);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Apellidos");
+		JLabel lblNewLabel_2 = new JLabel("Ciudad");
 		lblNewLabel_2.setBounds(10, 134, 267, 36);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Fecha de nacimiento");
+		JLabel lblNewLabel_3 = new JLabel("Dirección");
 		lblNewLabel_3.setBounds(10, 180, 250, 36);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Poblacion");
+		JLabel lblNewLabel_4 = new JLabel("Telefono");
 		lblNewLabel_4.setBounds(10, 226, 250, 36);
 		contentPane.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Username");
-		lblNewLabel_5.setBounds(10, 272, 250, 36);
-		contentPane.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Contraseña");
-		lblNewLabel_6.setBounds(10, 318, 250, 36);
-		contentPane.add(lblNewLabel_6);
+
 		
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.setBounds(470, 134, 159, 135);
@@ -135,22 +121,20 @@ public class HotelesI extends JFrame {
 				
 				
 				
-				String dni = textField.getText();
-				String nombre = textField_1.getText();
-				String apellidos = textField_2.getText();
-				Date fecha_nacimiento = (Date) dateChooser.getDate();
-				String poblacion = textField_4.getText();
-				String rol = "admin";
-				String username = textField_5.getText();
-				String password = textField_6.getText();
+				String nombre = textField.getText();
+				String descripcion = textField_1.getText();
+				String ciudad = textField_2.getText();
+				String direccion = textField_4.getText();
+				String telefono = textField_5.getText();
+
 				
-				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
+				Hoteles ho = new Hoteles(nombre, descripcion, ciudad, direccion, telefono);
 				
 				try {
-					UsersS.insert(emp);
+					HotelesS.insert(ho);
 					setVisible(false);
-					Admin a = new Admin();
-					a.setVisible(true);
+					HotelesCRUD H = new HotelesCRUD();
+					H.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

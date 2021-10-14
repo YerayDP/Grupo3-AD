@@ -13,34 +13,33 @@ import models.Hoteles;
 
 public class HotelesS {
 
-	public static void insert() throws SQLException
-	{
+	
 		
-	        String sql = "INSERT INTO hoteles(nombre,descripcion,ciudad,direccion,telefono) VALUES(?,?,?,?,?)";
+		public static void insert(Hoteles ho) throws SQLException
+		{
+			
+		        String sql = "INSERT INTO hoteles(nombre, descripcion, ciudad, direccion, telefono) VALUES(?,?,?,?,?)";
 
-	        try (Connection conn = DBC.createNewDBconnection();
-	                PreparedStatement consulta = conn.prepareStatement(sql)) {
-	        	
-	        	// create a sql date object so we can use it in our INSERT statement
-	            Calendar calendar = Calendar.getInstance();
-	            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-	        	
-	        	consulta.setString(1, "Hotel Royalti");
-	        	consulta.setString(2, "4 estrellas a pie de playa");
-	        	consulta.setString(3, "San Fernando");
-	        	consulta.setString(4, "Calle Reyes");
-	        	consulta.setString(5, "900900900");
-	        	
-	            consulta.executeUpdate();
-	            
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-	    
-		
-	      System.out.println("Hotel creado!");
-				  
-	}
+		        try (Connection conn = DBC.createNewDBconnection();
+		                PreparedStatement consulta = conn.prepareStatement(sql)) {
+		        		        	
+		        	consulta.setString(1, ho.getNombre());
+		        	consulta.setString(2, ho.getDescripcion());
+		        	consulta.setString(3, ho.getCiudad());
+		        	consulta.setString(4, ho.getDireccion());
+		        	consulta.setString(5, ho.getTelefono());
+
+		            consulta.executeUpdate();
+		            
+		        } catch (SQLException e) {
+		            System.out.println(e.getMessage());
+		        }
+		    
+			
+		      System.out.println("Hotel creado!");
+					  
+		}
+
 	
 	
 	

@@ -68,7 +68,7 @@ public class ComentariosS {
 	
 	public static List<String> Hoteles(Connection conexion) throws ClassNotFoundException{
       //String sql = "SELECT * FROM users" ;
-      String sql = "SELECT id_hotel FROM reserva WHERE id_cliente = 9" ;
+      String sql = "SELECT id_hotel FROM reserva WHERE id_cliente = 1" ;
 
       List<String> hoteles = new ArrayList<>();
       int contador = 0;

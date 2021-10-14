@@ -109,7 +109,7 @@ public class ComentariosI extends JFrame {
 				String hotel = (String) comboBox.getSelectedItem();
 				
 				Comentarios c = new Comentarios();
-				c.setId_cliente(9);
+				c.setId_cliente(1);
 				c.setId_hotel(Integer.valueOf (hotel));
 				c.setComentario(textField_2.getText());
 				try {
