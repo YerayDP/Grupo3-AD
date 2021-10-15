@@ -58,6 +58,7 @@ public class HabitacionesI extends JFrame {
 		setBounds(100, 100, 682, 300);
 		contentPane = new JPanel();
 		setLocationRelativeTo( null );
+		setTitle("Insertar habitación");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

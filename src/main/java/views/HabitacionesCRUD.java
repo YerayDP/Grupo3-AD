@@ -58,6 +58,7 @@ public class HabitacionesCRUD extends JFrame {
 		setBounds(100, 100, 800, 375);
 		contentPane = new JPanel();
 		setLocationRelativeTo( null );
+		setTitle("Administración de habitaciones");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
