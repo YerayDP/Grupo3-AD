@@ -42,8 +42,6 @@ public class UsersS {
 				  
 	}
 	
-	
-	
 	public static void update() throws ClassNotFoundException {
         String sql = "UPDATE users SET nombre=?, apellidos=?, fecha_nacimiento=?, poblacion=?, username=?, password=? WHERE DNI=?";
         
@@ -145,18 +143,6 @@ public class UsersS {
       return empleados;
       
 	 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public static void insertC(Clientes user) throws SQLException
 	{
