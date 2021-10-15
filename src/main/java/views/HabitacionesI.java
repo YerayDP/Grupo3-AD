@@ -18,6 +18,8 @@ import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
 import models.Empleados;
+import models.Habitaciones;
+import services.HabitacionesS;
 import services.UsersS;
 
 import javax.swing.JTextField;
@@ -30,9 +32,6 @@ public class HabitacionesI extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-
-	private JTextField textField_4;
-	private JTextField textField_5;
 	private JTextField textField_6;
 
 	/**
@@ -56,8 +55,9 @@ public class HabitacionesI extends JFrame {
 	 */
 	public HabitacionesI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 682, 456);
+		setBounds(100, 100, 682, 300);
 		contentPane = new JPanel();
+		setLocationRelativeTo( null );
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -77,56 +77,29 @@ public class HabitacionesI extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
-		final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		dateChooser.setBounds(284, 180, 143, 36);
-		contentPane.add(dateChooser);
-		
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(284, 226, 143, 36);
-		contentPane.add(textField_4);
-		textField_4.setColumns(10);
-		
-		textField_5 = new JTextField();
-		textField_5.setBounds(284, 272, 143, 36);
-		contentPane.add(textField_5);
-		textField_5.setColumns(10);
-		
-		textField_6 = new JPasswordField();
-		textField_6.setBounds(284, 318, 143, 36);
+		textField_6 = new JTextField();
+		textField_6.setBounds(284, 180, 143, 36);
 		contentPane.add(textField_6);
 		textField_6.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Dni");
+		JLabel lblNewLabel = new JLabel("Numero de habitacion");
 		lblNewLabel.setBounds(10, 42, 250, 36);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		JLabel lblNewLabel_1 = new JLabel("Precio por noche");
 		lblNewLabel_1.setBounds(10, 88, 250, 39);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Apellidos");
+		JLabel lblNewLabel_2 = new JLabel("Tipo de habiatcion");
 		lblNewLabel_2.setBounds(10, 134, 267, 36);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Fecha de nacimiento");
-		lblNewLabel_3.setBounds(10, 180, 250, 36);
-		contentPane.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Poblacion");
-		lblNewLabel_4.setBounds(10, 226, 250, 36);
-		contentPane.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Username");
-		lblNewLabel_5.setBounds(10, 272, 250, 36);
-		contentPane.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Contraseña");
-		lblNewLabel_6.setBounds(10, 318, 250, 36);
+		JLabel lblNewLabel_6 = new JLabel("Extras");
+		lblNewLabel_6.setBounds(10, 180, 250, 36);
 		contentPane.add(lblNewLabel_6);
 		
 		JButton btnNewButton = new JButton("Confirmar");
-		btnNewButton.setBounds(470, 134, 159, 135);
+		btnNewButton.setBounds(472, 65, 159, 135);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			
@@ -135,22 +108,18 @@ public class HabitacionesI extends JFrame {
 				
 				
 				
-				String dni = textField.getText();
-				String nombre = textField_1.getText();
-				String apellidos = textField_2.getText();
-				java.util.Date fecha_nacimiento = dateChooser.getDate();
-				String poblacion = textField_4.getText();
-				String rol = "admin";
-				String username = textField_5.getText();
-				String password = textField_6.getText();
+				int numHabitaciones = Integer.parseInt(textField.getText());
+				int precioNoche = Integer.parseInt(textField_1.getText());
+				String tipo = textField_2.getText();
+				String extras = textField_6.getText();
 				
-				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, (Date) fecha_nacimiento);
+				Habitaciones hab = new Habitaciones(numHabitaciones, precioNoche, tipo, extras);
 				
 				try {
-					UsersS.insert(emp);
+					HabitacionesS.insert(hab);
 					setVisible(false);
-					Admin a = new Admin();
-					a.setVisible(true);
+					HabitacionesCRUD HUD = new HabitacionesCRUD();
+					HUD.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

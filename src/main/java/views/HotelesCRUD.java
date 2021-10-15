@@ -57,6 +57,7 @@ public class HotelesCRUD extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 375);
 		contentPane = new JPanel();
+		setLocationRelativeTo( null );
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -180,7 +181,7 @@ public class HotelesCRUD extends JFrame {
 						+ "SET direccion = NULL WHERE telefono = '"+telefono+"'"
 						+ " ;UPDATE hoteles \r\n "
 						+ "SET telefono = NULL WHERE nombre = '"+nombre+"'"
-						+ " ;UPDATE hoteles\r\n"
+						+ " ;UPDATE hoteles \r\n"
 						+ "SET  nombre = '" + NewNombre + "' , descripcion = '" + NewDesc + "' , ciudad = '" + NewCiudad + 
 						"' , direccion = '" + NewDir + "' , telefono = '" + NewTel + "' WHERE nombre = '" + nombre + "'" ;
 			

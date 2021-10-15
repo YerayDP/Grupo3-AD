@@ -13,23 +13,21 @@ import models.Hoteles;
 
 public class HabitacionesS {
 
-	public static void insert() throws SQLException
+
+	public static void insert(Habitaciones ha) throws SQLException
 	{
 		
-	        String sql = "INSERT INTO habitaciones (numHabitaciones,precioNoche,tipo,extras) VALUES(?,?,?,?)";
+	        String sql = "INSERT INTO habitaciones(numHabitacion, precioNoche, tipo, extras) VALUES(?,?,?,?)";
 
 	        try (Connection conn = DBC.createNewDBconnection();
 	                PreparedStatement consulta = conn.prepareStatement(sql)) {
-	        	
-	        	// create a sql date object so we can use it in our INSERT statement
-	            Calendar calendar = Calendar.getInstance();
-	            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
-	        	
-	        	consulta.setInt(1, 2);
-	        	consulta.setInt(2, 144);
-	        	consulta.setString(3, "Suite");
-	        	consulta.setString(4, "Frigorifico");
-	        	
+	        		        	
+	        	consulta.setInt(1, ha.getNumHabitacion());
+	        	consulta.setInt(2, ha.getPrecioNoche());
+	        	consulta.setString(3, ha.getTipo());
+	        	consulta.setString(4, ha.getExtras());
+
+
 	            consulta.executeUpdate();
 	            
 	        } catch (SQLException e) {
@@ -37,36 +35,11 @@ public class HabitacionesS {
 	        }
 	    
 		
-	      System.out.println("Usuario creado!");
+	      System.out.println("Habitacion creada!");
 				  
 	}
-	
-	
-	
-	public static void update() throws ClassNotFoundException {
-        String sql = "UPDATE habitaciones SET numHabitacion=?, precioNoche=?, tipo=?, extras=? WHERE numHabitacion=?";
-        
-     // create a sql date object so we can use it in our INSERT statement
-        Calendar calendar = Calendar.getInstance();
-        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 
-        try (Connection conn = DBC.createNewDBconnection();
-                PreparedStatement consulta = conn.prepareStatement(sql)) {
-        	
-        	consulta.setInt(1, 2);
-        	consulta.setInt(2, 144);
-        	consulta.setString(3, "Suite");
-        	consulta.setString(4, "Frigorifico");
-        	
-            
-            consulta.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        System.out.println("---");
-    }
+	
 	
 	public static List<Habitaciones> select(Connection conexion) throws ClassNotFoundException{
 	      String sql = "SELECT * FROM habitaciones" ;
@@ -94,20 +67,6 @@ public class HabitacionesS {
 	      
 		 }
 	
-	public static void delete() throws ClassNotFoundException {
-        String sql = "DELETE FROM users WHERE telefono = ?";
-
-        try (Connection conn = DBC.createNewDBconnection();
-                PreparedStatement consulta = conn.prepareStatement(sql)) {
-
-            // set the corresponding parameter
-        	consulta.setInt(1, 2);
-            // execute the delete statement
-        	consulta.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+	
 	
 }

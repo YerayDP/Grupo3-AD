@@ -41,33 +41,7 @@ public class HotelesS {
 		}
 
 	
-	
-	
-	public static void update() throws ClassNotFoundException {
-        String sql = "UPDATE hoteles SET nombre=?, descripcion=?, ciudad=?, direccion=?, telefono=? WHERE telefono=?\"";
-        
-     // create a sql date object so we can use it in our INSERT statement
-        Calendar calendar = Calendar.getInstance();
-        java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
 
-        try (Connection conn = DBC.createNewDBconnection();
-                PreparedStatement consulta = conn.prepareStatement(sql)) {
-        	
-        	consulta.setString(1, "Hotel Royalti");
-        	consulta.setString(2, "4 estrellas a pie de playa");
-        	consulta.setString(3, "San Fernando");
-        	consulta.setString(4, "Calle Reyes");
-        	consulta.setString(5, "900900900");
-        	
-            
-            consulta.executeUpdate();
-            
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        System.out.println("---");
-    }
 	
 	public static List<Hoteles> select(Connection conexion) throws ClassNotFoundException{
 	      String sql = "SELECT * FROM hoteles" ;

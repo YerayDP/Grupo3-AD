@@ -60,6 +60,7 @@ public class HotelesI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 682, 456);
 		contentPane = new JPanel();
+		setLocationRelativeTo( null );
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
