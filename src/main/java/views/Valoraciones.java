@@ -25,6 +25,7 @@ import services.HotelesS;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class Valoraciones extends JFrame {
 
@@ -68,20 +69,28 @@ public class Valoraciones extends JFrame {
 		comboBox.setBounds(20, 100, 121, 21);
 		contentPane.add(comboBox);
 		
+		JLabel lblNewLabel = new JLabel("Elija un hotel");
+		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel.setBounds(10, 10, 131, 68);
+		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.setBounds(20, 147, 121, 53);
 		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("Elija un hotel");
-		lblNewLabel.setBounds(10, 10, 131, 68);
-		contentPane.add(lblNewLabel);
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+					JLabel lblNewLabel_1 = new JLabel("ID Usuario");
+					lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+					lblNewLabel_1.setBounds(171, 25, 131, 38);
+					contentPane.add(lblNewLabel_1);
 					
+					JLabel lblNewLabel_2 = new JLabel("Comentario");
+					lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+					lblNewLabel_2.setBounds(491, 25, 152, 38);
+					contentPane.add(lblNewLabel_2);
 					String hotel = comboBox.getSelectedItem().toString();
 					
 					try {
@@ -139,5 +148,4 @@ public class Valoraciones extends JFrame {
 			}
 		});
 	}
-
 }

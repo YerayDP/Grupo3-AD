@@ -4,16 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import java.awt.Font;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Home extends JFrame {
 
 	private JPanel contentPane;
-	ImageIcon icono = new ImageIcon("resources/icon.jpg");
+	ImageIcon perro = new ImageIcon("resources/icono.jpeg");
 
 	/**
 	 * Launch the application.
@@ -42,18 +47,50 @@ public class Home extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_7 = new JLabel("H");
-		lblNewLabel_7.setBackground(Color.WHITE);
-		lblNewLabel_7.setIcon(icono);
-		lblNewLabel_7.setBounds(10, 20, 132, 180);
-		contentPane.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel = new JLabel("Login");
-		lblNewLabel.setBounds(97, 187, 107, 37);
+		JLabel lblNewLabel = new JLabel("Bienvenido al sistema de gestion de hoteles");
+		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 18));
+		lblNewLabel.setBounds(171, 32, 396, 42);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Registro");
-		lblNewLabel_1.setBounds(314, 173, 141, 37);
+		JButton btnNewButton = new JButton("Registrarse");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+				
+				Register r = new Register();
+				r.setVisible(true);
+			}
+		});
+		btnNewButton.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		btnNewButton.setBounds(213, 205, 130, 54);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Login");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+				
+				Login l = new Login();
+				l.setVisible(true);
+			}
+		});
+		btnNewButton_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		btnNewButton_1.setBounds(472, 205, 130, 54);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("¿Que desea hacer?");
+		lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(322, 106, 147, 42);
 		contentPane.add(lblNewLabel_1);
+		setLocationRelativeTo(null);
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setBackground(Color.WHITE);
+		lblNewLabel_7.setIcon(perro);
+		lblNewLabel_7.setBounds(10, 20, 132, 180);
+		contentPane.add(lblNewLabel_7);
 	}
+
 }

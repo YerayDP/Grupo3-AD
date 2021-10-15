@@ -1,31 +1,120 @@
 package views;
 
-import java.io.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
-@SuppressWarnings("serial")
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import models.Empleados;
+import models.Users;
+import services.DBC;
+import services.UsersS;
+
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
+import java.awt.event.ActionEvent;
+
 public class Login extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		new Login();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login frame = new Login();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
+
+	/**
+	 * Create the frame.
+	 */
 	public Login() {
-		setTitle("Login");
-		setSize(480, 240);
-		setResizable(false);
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(40, 20, 20, 20));
-		panel.setLayout(new GridLayout(4, 2, 10, 10));
-		panel.add(new JLabel("Username:"));
-		panel.add(new JTextField(15));
-		panel.add(new JLabel("Password:"));
-		panel.add(new JPasswordField());
-		JButton login = new JButton("Login");
-		login.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.add(login);
-		add(panel);
-	    setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 801, 417);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(359, 118, 192, 25);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(313, 183, 195, 25);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Introduzca su Nombre de usuario : ");
+		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel.setBounds(35, 118, 270, 35);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Introduzca su contraseña : ");
+		lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(35, 180, 210, 35);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Inicio de sesion");
+		lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(291, 23, 149, 48);
+		contentPane.add(lblNewLabel_2);
+		
+		JButton btnNewButton = new JButton("Inicio de sesion");
+		btnNewButton.setBounds(290, 272, 150, 62);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					List<Empleados> users = UsersS.selectt(DBC.createNewDBconnection());
+					
+					
+					for (Empleados em : users) {
+						if(em.getUsername().equals(textField.getText()) && em.getPassword().equals(textField_1.getText()) && em.getRol().equals("empleado"))
+						{
+							Empleado emp = new Empleado(em);
+							emp.setVisible(true);
+						}
+						else if(em.getUsername().equals(textField.getText()) && em.getPassword().equals(textField_1.getText()) && em.getRol().equals("cliente"))
+						{
+							Cliente c = new Cliente();
+							c.setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "No está registrado");
+							setVisible(false);
+							Home h = new Home();
+							h.setVisible(true);
+						}
+					}
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 	}
 }

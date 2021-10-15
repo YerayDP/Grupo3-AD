@@ -17,7 +17,11 @@ public class Users {
 		this.password = password;
 		this.fecha_nacimiento = fecha_nacimiento2;
 	}
-	
+
+	public Users() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getDni() {
 		return dni;
 	}

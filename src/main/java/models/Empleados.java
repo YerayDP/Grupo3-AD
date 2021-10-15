@@ -13,6 +13,10 @@ public class Empleados extends Users{
 		
 	}
 
+	public Empleados() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getPoblacion() {
 		return poblacion;
 	}

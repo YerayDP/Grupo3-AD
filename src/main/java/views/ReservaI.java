@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,10 +12,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
-import models.Empleados;
 import models.Reservas;
 import services.ReservasS;
-import services.UsersS;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,12 +22,8 @@ import javax.swing.JButton;
 public class ReservaI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -118,9 +111,9 @@ public class ReservaI extends JFrame {
 				try {
 					ReservasS.insert(res);
 					setVisible(false);
-					Cliente cl = new Cliente();
+					//Cliente cl = new Cliente();
 					setVisible(false);
-					cl.setVisible(true);
+					//cl.setVisible(true);
 					//
 					//Cliente
 					//

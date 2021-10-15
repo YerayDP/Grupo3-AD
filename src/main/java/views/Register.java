@@ -1,31 +1,138 @@
 package views;
 
-import java.io.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
-@SuppressWarnings("serial")
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import models.Clientes;
+import models.Users;
+import services.UsersS;
+
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+
 public class Register extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		new Register();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Register frame = new Register();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
+
+	/**
+	 * Create the frame.
+	 */
 	public Register() {
-		setTitle("Register");
-		setSize(480, 240);
-		setResizable(false);
-		JPanel panel = new JPanel();
-		panel.setBorder(BorderFactory.createEmptyBorder(40, 20, 20, 20));
-		panel.setLayout(new GridLayout(4, 2, 10, 10));
-		panel.add(new JLabel("Username:"));
-		panel.add(new JTextField(15));
-		panel.add(new JLabel("Password:"));
-		panel.add(new JPasswordField());
-		JButton register = new JButton("Register");
-		register.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.add(register);
-		add(panel);
-	    setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 801, 417);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
+		
+		JLabel lblNewLabel = new JLabel("Dni");
+		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel.setBounds(213, 44, 59, 31);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nombre");
+		lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(213, 85, 89, 31);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Apellidos");
+		lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_2.setBounds(205, 126, 86, 48);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Fecha de nacimiento");
+		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_3.setBounds(204, 186, 153, 28);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Imagen");
+		lblNewLabel_4.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_4.setBounds(213, 224, 86, 26);
+		contentPane.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Usurname");
+		lblNewLabel_5.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_5.setBounds(213, 274, 86, 31);
+		contentPane.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("Password");
+		lblNewLabel_6.setFont(new Font("Sitka Text", Font.BOLD, 15));
+		lblNewLabel_6.setBounds(213, 315, 86, 31);
+		contentPane.add(lblNewLabel_6);
+		
+		
+		textField = new JTextField();
+		textField.setBounds(295, 48, 96, 19);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(295, 83, 96, 31);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(295, 133, 134, 35);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(333, 268, 96, 31);
+		contentPane.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBounds(333, 315, 96, 28);
+		contentPane.add(textField_4);
+		textField_4.setColumns(10);
+
+		
+		JButton btnNewButton = new JButton("Registrarse");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Clientes c = new Clientes(textField.getText(), textField_1.getText(), textField_2.getText(),null, "cliente",textField_3.getText() ,textField_4.getText(), null,null );
+				try {
+					UsersS.insertC(c);
+					//Users u = new Clientes(c);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(598, 169, 86, 59);
+		contentPane.add(btnNewButton);
 	}
 }

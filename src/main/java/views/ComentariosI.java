@@ -114,6 +114,7 @@ public class ComentariosI extends JFrame {
 				c.setComentario(textField_2.getText());
 				try {
 					ComentariosS.insert(c);
+					setVisible(false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

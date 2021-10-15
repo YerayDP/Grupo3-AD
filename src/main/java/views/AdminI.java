@@ -142,11 +142,10 @@ public class AdminI extends JFrame {
 				String apellidos = textField_2.getText();
 				Date fecha_nacimiento = new java.sql.Date(dateChooser.getDate().getTime());
 				String poblacion = textField_4.getText();
-				String rol = "Empleado";
 				String username = textField_5.getText();
 				String password = textField_6.getText();
 
-				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
+				Empleados emp = new Empleados(dni, nombre, apellidos, poblacion, "empleado", username, password, fecha_nacimiento);
 				emp.setPoblacion(poblacion);
 
 				try {

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import models.Clientes;
 import models.Empleados;
 
 public class UsersS {
@@ -102,7 +104,7 @@ public class UsersS {
             rs=ps.executeQuery();
             while(rs.next())
             {
-                System.out.println(rs.getString(1)); //here you can get data, the '1' indicates column number based on your query
+                System.out.println(rs.getString(1));
 
             }
 
@@ -116,9 +118,9 @@ public class UsersS {
 	}
 	
 	@SuppressWarnings("null")
-	public static List<Empleados> select(Connection conexion) throws ClassNotFoundException{
+	public static List<Empleados> selectt(Connection conexion) throws ClassNotFoundException{
       //String sql = "SELECT * FROM users" ;
-      String sql = "SELECT id,dni,nombre,apellidos,rol,poblacion,fecha_nacimiento,username,password FROM users" ;
+      String sql = "SELECT id,dni,nombre,apellidos,poblacion,rol,fecha_nacimiento,username,password FROM users" ;
 
       Empleados emp = null;
       List<Empleados> empleados = new ArrayList<>();
@@ -132,9 +134,9 @@ public class UsersS {
      	 // loop through the result set
      	 while (rs.next()) {
      		 
-     		 emp = new Empleados(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("rol"), rs.getString("poblacion"), rs.getString("username"), rs.getString("password"),  rs.getDate("fecha_nacimiento"));
+     		 emp = new Empleados(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("poblacion"), rs.getString("rol"), rs.getString("username"), rs.getString("password"),  rs.getDate("fecha_nacimiento"));
      		 empleados.add(emp);
-     		 System.out.println(emp.getPoblacion());
+     		 System.out.println(emp.getUsername());
      	 }
       } catch (SQLException e) {
      	 System.out.println(e.getMessage());
@@ -143,5 +145,44 @@ public class UsersS {
       return empleados;
       
 	 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void insertC(Clientes user) throws SQLException
+	{
+		
+	        String sql = "INSERT INTO users(dni,nombre,apellidos,fecha_nacimiento,imagen,rol,username,password) VALUES(?,?,?,?,?,?,?,?)";
+
+	        try (Connection conn = DBC.createNewDBconnection();
+	                PreparedStatement consulta = conn.prepareStatement(sql)) {
+	        		        	
+	        	consulta.setString(1, user.getDni());
+	        	consulta.setString(2, user.getNombre());
+	        	consulta.setString(3, user.getApellidos());
+	        	consulta.setDate(4, null);
+	        	consulta.setString(5, user.getImagen());
+	        	consulta.setString(6, user.getRol());
+	  	      	consulta.setString(7, user.getUsername());
+	  	      	consulta.setString(8, user.getPassword());
+	            consulta.executeUpdate();
+	            
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+	    
+		
+	      System.out.println("Usuario creado!");
+				  
+	}
 	
 }

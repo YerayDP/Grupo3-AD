@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import models.Empleados;
 
 public class DBC {
 	
@@ -14,14 +18,13 @@ public class DBC {
 	private static Connection conn;
 	
 
-	
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 		
 		//createNewDBconnection();
 		//UsersS.insert();
 		//UsersS.select();
 		//UsersS.selectct(createNewDBconnection());
-		ComentariosS.Hoteles(createNewDBconnection());
+		//ComentariosS.Hoteles(createNewDBconnection());
 		
 	  }
 

@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import models.Clientes;
+import models.Users;
 import services.DBC;
 
 import javax.swing.JButton;
@@ -20,6 +22,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
@@ -78,6 +82,16 @@ public class Cliente extends JFrame {
 		JButton btnNewButton_3 = new JButton("Valorar hotel");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					setVisible(false);
+					ComentariosI v = new ComentariosI();
+					v.setVisible(true);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton_3.setBounds(493, 91, 132, 56);
@@ -151,10 +165,16 @@ public class Cliente extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final Connection conD = DBC.createNewDBconnection();
+				
+				//java.util.Date fecha = new Date();
+				//String fechaa = fecha.getDate().toString();
 
 				int row = table_1.getSelectedRow();
 				String cell = table_1.getModel().getValueAt(row, 4).toString();
-				//if () {
+				//SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+				//Date fecha2 = formato.parse(cell); 
+				
+				//if (fechaa.getDate()<fecha2) {
 					String sql = "DELETE FROM reserva WHERE fecha_entrada = '"+cell+"'";
 					try {
 						PreparedStatement pst = conD.prepareStatement(sql);
@@ -170,9 +190,6 @@ public class Cliente extends JFrame {
 						contentPane.repaint();
 						JOptionPane.showMessageDialog(null, "Borrado");
 						setVisible(false);
-						Cliente cl = new Cliente();
-
-						cl.setVisible(true);
 
 					} catch (Exception e2) {
 						// TODO: handle exception

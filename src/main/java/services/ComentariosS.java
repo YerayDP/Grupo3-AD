@@ -95,4 +95,33 @@ public class ComentariosS {
       
 	 }
 	
+	public static List<Integer> TodosHoteles(Connection conexion) throws ClassNotFoundException{
+        //String sql = "SELECT * FROM users" ;
+        String sql = "SELECT id FROM hoteles" ;
+
+        List<Integer> hoteles = new ArrayList<>();
+        int contador = 0;
+
+        try {
+
+            PreparedStatement consulta = conexion.prepareStatement(sql);
+
+            //
+            ResultSet rs  = consulta.executeQuery();
+            // loop through the result set
+            while (rs.next()) {
+                contador++;
+                int a = rs.getInt("id");
+                hoteles.add(a);
+                System.out.println(a);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return hoteles;
+
+       }
+	
 }
