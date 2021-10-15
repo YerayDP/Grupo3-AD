@@ -129,7 +129,7 @@ public class Cliente extends JFrame {
 		final Connection con = DBC.createNewDBconnection();
 
 		String sql = "Select H.Nombre, R.* FROM  reserva R "
-				+ " JOIN hoteles H ON H.id = R.id_hotel";
+				+ " JOIN hoteles H ON H.id = R.id_hotel WHERE R.fecha_salida<(SELECT SYSDATE())";
 
 		ps = con.prepareStatement(sql);
 

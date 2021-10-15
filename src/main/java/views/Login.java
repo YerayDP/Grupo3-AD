@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import models.Empleados;
@@ -63,7 +64,7 @@ public class Login extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		textField_1.setBounds(313, 183, 195, 25);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
@@ -78,12 +79,12 @@ public class Login extends JFrame {
 		lblNewLabel_1.setBounds(35, 180, 210, 35);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Inicio de sesion");
+		JLabel lblNewLabel_2 = new JLabel("Inicio de sesión");
 		lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
 		lblNewLabel_2.setBounds(291, 23, 149, 48);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Inicio de sesion");
+		JButton btnNewButton = new JButton("Inicio de sesión");
 		btnNewButton.setBounds(290, 272, 150, 62);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -92,25 +93,34 @@ public class Login extends JFrame {
 				try {
 					List<Empleados> users = UsersS.selectt(DBC.createNewDBconnection());
 					
+					boolean registrado;
 					
 					for (Empleados em : users) {
+						
 						if(em.getUsername().equals(textField.getText()) && em.getPassword().equals(textField_1.getText()) && em.getRol().equals("empleado"))
 						{
+							registrado=false;
 							Empleado emp = new Empleado(em);
+							setVisible(false);
 							emp.setVisible(true);
 						}
 						else if(em.getUsername().equals(textField.getText()) && em.getPassword().equals(textField_1.getText()) && em.getRol().equals("cliente"))
 						{
+							registrado=false;
 							Cliente c = new Cliente();
+							setVisible(false);
 							c.setVisible(true);
 						}
-						else {
-							JOptionPane.showMessageDialog(null, "No está registrado");
-							setVisible(false);
-							Home h = new Home();
-							h.setVisible(true);
-						}
+						
 					}
+					
+					if(registrado=false)
+					{
+					Home h = new Home();
+					setVisible(false);
+					h.setVisible(true);
+					}
+					
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

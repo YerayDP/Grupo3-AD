@@ -85,10 +85,7 @@ public class Consultar extends JFrame {
 				
 				String hotel = comboBox.getSelectedItem().toString();
 				
-				try {
-					List<Comentarios> cs = ComentariosS.comentarios(DBC.createNewDBconnection(), Integer.valueOf (hotel));
-
-						
+				try {					
 						
 						JTable table_1 = new JTable();
 				        table_1.setBounds(152, 64, 483, 170);
@@ -101,7 +98,7 @@ public class Consultar extends JFrame {
 				        Connection con = DBC.createNewDBconnection();
 
 
-				        String sql = "Select id_cliente from reserva where id_hotel=? AND fecha_salida>='2021-09-12'";
+				        String sql = "Select U.nombre, R.fecha_entrada, R.fecha_salida from reserva R join Users U where R.id_hotel=? AND fecha_entrada<=(SELECT SYSDATE()) AND fecha_salida>=(SELECT SYSDATE())";
 
 				        ps = con.prepareStatement(sql);
 				        
@@ -113,8 +110,9 @@ public class Consultar extends JFrame {
 
 				        int cantidadColumnas = rsMd.getColumnCount();
 
-				        modelo.addColumn("Dni");
-				        modelo.addColumn("Dni");
+				        modelo.addColumn("");
+				        modelo.addColumn("");
+				        modelo.addColumn("");
 
 
 				        while(rs.next())
@@ -127,7 +125,7 @@ public class Consultar extends JFrame {
 				            modelo.addRow(filas);
 				        }
 					
-				} catch (NumberFormatException | ClassNotFoundException e1) {
+				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (SQLException e1) {
