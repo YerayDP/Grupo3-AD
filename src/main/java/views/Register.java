@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import services.UsersS;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -27,6 +29,8 @@ public class Register extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JTextField textField_5;
+	private String ruta = null;
 
 	/**
 	 * Launch the application.
@@ -83,7 +87,7 @@ public class Register extends JFrame {
 		lblNewLabel_4.setBounds(213, 224, 86, 26);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("Usurname");
+		JLabel lblNewLabel_5 = new JLabel("Username");
 		lblNewLabel_5.setFont(new Font("Sitka Text", Font.BOLD, 15));
 		lblNewLabel_5.setBounds(213, 274, 86, 31);
 		contentPane.add(lblNewLabel_5);
@@ -118,13 +122,30 @@ public class Register extends JFrame {
 		textField_4.setBounds(333, 315, 96, 28);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
-
 		
+		JFileChooser chooser = new JFileChooser();
+		chooser.setBounds(61, 169, 86, 97);
+		contentPane.add(chooser);
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		Component parent = null;
+		int returnVal = chooser.showSaveDialog(parent);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			 
+			 
+			 // obtener ruta
+			String selectPath = chooser.getSelectedFile().getPath();
+			 System.out.println ("El directorio que elija es:" + selectPath);
+			 ruta = selectPath;
+			}
+		
+
 		JButton btnNewButton = new JButton("Registrarse");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Clientes c = new Clientes(textField.getText(), textField_1.getText(), textField_2.getText(),null, "cliente",textField_3.getText() ,textField_4.getText(), null,null );
+				
+				
+				Clientes c = new Clientes(textField.getText(), textField_1.getText(), textField_2.getText(),null, "cliente",textField_3.getText() ,textField_4.getText(), null,ruta);
 				try {
 					UsersS.insertC(c);
 					//Users u = new Clientes(c);
@@ -134,7 +155,7 @@ public class Register extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(598, 169, 86, 59);
+		btnNewButton.setBounds(557, 169, 86, 59);
 		contentPane.add(btnNewButton);
+			}
 	}
-}

@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class Home extends JFrame {
 
@@ -89,9 +91,10 @@ public class Home extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setBackground(Color.WHITE);
-		lblNewLabel_7.setIcon(perro);
-		lblNewLabel_7.setBounds(10, 20, 132, 180);
+		lblNewLabel_7.setForeground(Color.GRAY);
+		lblNewLabel_7.setBackground(UIManager.getColor("Button.background"));
+		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\Pablo\\Desktop\\Hotell.PNG"));
+		lblNewLabel_7.setBounds(10, 25, 72, 123);
 		contentPane.add(lblNewLabel_7);
 	}
 

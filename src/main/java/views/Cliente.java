@@ -167,16 +167,10 @@ public class Cliente extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				final Connection conD = DBC.createNewDBconnection();
-				
-				//java.util.Date fecha = new Date();
-				//String fechaa = fecha.getDate().toString();
 
 				int row = table_1.getSelectedRow();
 				String cell = table_1.getModel().getValueAt(row, 4).toString();
-				//SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-				//Date fecha2 = formato.parse(cell); 
-				
-				//if (fechaa.getDate()<fecha2) {
+
 					String sql = "DELETE FROM reserva WHERE fecha_entrada = '"+cell+"'";
 					try {
 						PreparedStatement pst = conD.prepareStatement(sql);
@@ -199,8 +193,6 @@ public class Cliente extends JFrame {
 
 				}
 				
-			//}
-
 		});
 		
 	
