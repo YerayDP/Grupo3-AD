@@ -3,6 +3,7 @@ package views;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,9 +15,14 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
+
 import services.DBC;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConsultarHabitaciones extends JFrame {
 
@@ -47,71 +53,94 @@ public class ConsultarHabitaciones extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		setTitle("Consulta de habitaciones");
 		setLocationRelativeTo(null);
 		
 		
-		try {					
+			contentPane.setLayout(null);
 			
-			JTable table_1 = new JTable();
-	        table_1.setBounds(153, 104, 483, 170);
-	        contentPane.add(table_1);
+
 	        
 	        JLabel lblNewLabel = new JLabel("Habitacion");
+	        lblNewLabel.setBounds(256, 78, 130, 26);
 	        lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 13));
-	        lblNewLabel.setBounds(190, 78, 130, 26);
 	        contentPane.add(lblNewLabel);
 	        
 	        JLabel lblNewLabel_1 = new JLabel("Hotel");
+	        lblNewLabel_1.setBounds(431, 78, 54, 26);
 	        lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 13));
-	        lblNewLabel_1.setBounds(360, 78, 54, 26);
 	        contentPane.add(lblNewLabel_1);
 	        
 	        JLabel lblNewLabel_2 = new JLabel("Tipo");
+	        lblNewLabel_2.setBounds(565, 78, 54, 26);
 	        lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 13));
-	        lblNewLabel_2.setBounds(522, 78, 54, 26);
 	        contentPane.add(lblNewLabel_2);
+	        
+	        final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+			dateChooser.setBounds(247, 179, 147, 32);
+			dateChooser.getJCalendar();
+			contentPane.add(dateChooser);
 			
-			DefaultTableModel modelo  = (DefaultTableModel) table_1.getModel();
-	        
-	        PreparedStatement ps = null;
-	        ResultSet rs = null;
-	        Connection con = DBC.createNewDBconnection();
+			JLabel lblNewLabel_3 = new JLabel("Seleccione una fecha");
+			lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 13));
+			lblNewLabel_3.setBounds(32, 119, 147, 21);
+			contentPane.add(lblNewLabel_3);
+			
+			JButton btnNewButton = new JButton("Consultar");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					JTable table_1 = new JTable();
+					table_1.setBounds(244, 96, 386, 170);
+			        contentPane.add(table_1);					
+					
+					DefaultTableModel modelo  = (DefaultTableModel) table_1.getModel();
+			        
+			        PreparedStatement ps = null;
+			        ResultSet rs = null;
+			        Connection con = DBC.createNewDBconnection();
+			        
+			        Date fecha = new java.sql.Date(dateChooser.getDate().getTime());
 
+			        String sql = "SELECT DISTINCT HO.nombre,H.numHabitacion, H.tipo from reserva R JOIN habitaciones H JOIN hoteles HO WHERE R.fecha_entrada > '"+fecha+"' ";
 
-	        String sql = "SELECT DISTINCT H.numHabitacion, HO.nombre, H.tipo from reserva R JOIN habitaciones H JOIN hoteles HO WHERE fecha_entrada<=(SELECT SYSDATE()) AND fecha_salida>=(SELECT SYSDATE())";
+			        try {
+						ps = con.prepareStatement(sql);
 
-	        ps = con.prepareStatement(sql);
-	        
-	        //ps.setInt(1,Integer.valueOf(hotel));
+				        rs = ps.executeQuery();
 
-	        rs = ps.executeQuery();
+				        ResultSetMetaData rsMd = rs.getMetaData();
 
-	        ResultSetMetaData rsMd = rs.getMetaData();
+				        int cantidadColumnas = rsMd.getColumnCount();
 
-	        int cantidadColumnas = rsMd.getColumnCount();
+				        modelo.addColumn("");
+				        modelo.addColumn("");
+				        modelo.addColumn("");
 
-	        modelo.addColumn("");
-	        modelo.addColumn("");
-	        modelo.addColumn("");
+				        while(rs.next())
+				        {
+				            Object[] filas = new Object[cantidadColumnas];
 
-	        while(rs.next())
-	        {
-	            Object[] filas = new Object[cantidadColumnas];
+				            for (int i = 0; i < cantidadColumnas; i++) {
+				                filas[i] = rs.getObject(i+1);
+				            }
+				            modelo.addRow(filas);
+				        }
+						
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			        
 
-	            for (int i = 0; i < cantidadColumnas; i++) {
-	                filas[i] = rs.getObject(i+1);
-	            }
-	            modelo.addRow(filas);
-	        }
+				}
+			});
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+			btnNewButton.setBounds(32, 224, 147, 42);
+			contentPane.add(btnNewButton);
+			
+			
 		
-	} catch (NumberFormatException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	}
+
 }
 }
