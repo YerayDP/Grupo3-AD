@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import models.Clientes;
 import models.Users;
 import services.UsersS;
@@ -18,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
@@ -31,6 +34,7 @@ public class Register extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private String ruta = null;
+	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -53,7 +57,7 @@ public class Register extends JFrame {
 	 */
 	public Register() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 801, 417);
+		setBounds(100, 100, 540, 417);
 		contentPane = new JPanel();
 		setLocationRelativeTo( null );
 		setTitle("Register");
@@ -64,67 +68,73 @@ public class Register extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Dni");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel.setBounds(213, 44, 59, 31);
+		lblNewLabel.setBounds(50, 45, 33, 31);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre");
 		lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(213, 85, 89, 31);
+		lblNewLabel_1.setBounds(28, 78, 89, 31);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Apellidos");
 		lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(205, 126, 86, 48);
+		lblNewLabel_2.setBounds(15, 115, 68, 48);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Fecha de nacimiento");
 		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(204, 186, 153, 28);
+		lblNewLabel_3.setBounds(15, 174, 153, 28);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Imagen");
 		lblNewLabel_4.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(213, 224, 86, 26);
+		lblNewLabel_4.setBounds(253, 45, 68, 26);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Username");
 		lblNewLabel_5.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_5.setBounds(213, 274, 86, 31);
+		lblNewLabel_5.setBounds(15, 213, 86, 31);
 		contentPane.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("Password");
 		lblNewLabel_6.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_6.setBounds(213, 315, 86, 31);
+		lblNewLabel_6.setBounds(15, 255, 86, 31);
 		contentPane.add(lblNewLabel_6);
 		
 		
 		textField = new JTextField();
-		textField.setBounds(295, 48, 96, 19);
+		textField.setBounds(93, 48, 96, 19);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(295, 83, 96, 31);
+		textField_1.setBounds(93, 76, 96, 31);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(295, 133, 134, 35);
+		textField_2.setBounds(93, 120, 134, 35);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(333, 268, 96, 31);
+		textField_3.setBounds(93, 255, 96, 31);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(333, 315, 96, 28);
+		textField_4.setBounds(93, 213, 96, 28);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
+		final JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dateChooser.setBounds(178, 176, 86, 20);
+		dateChooser.getJCalendar();
+		contentPane.add(dateChooser);
+
+		
 		JFileChooser chooser = new JFileChooser();
-		chooser.setBounds(61, 169, 86, 97);
+		chooser.setBounds(331, 45, 86, 97);
 		contentPane.add(chooser);
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		Component parent = null;
@@ -144,8 +154,16 @@ public class Register extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				
-				Clientes c = new Clientes(textField.getText(), textField_1.getText(), textField_2.getText(),null, "cliente",textField_3.getText() ,textField_4.getText(), null,ruta);
+
+				String dni = textField.getText();
+				String nombre = textField_1.getText();
+				String apellidos = textField_2.getText();
+				Date fn = new java.sql.Date(dateChooser.getDate().getTime());
+				String username = textField_4.getText();
+				String password = textField_3.getText();
+				System.out.println(fn);
+				Clientes c = new Clientes(dni, nombre, apellidos,"cliente",username,password,fn ,ruta);
+				c.setImagen(ruta);
 				try {
 					UsersS.insertC(c);
 					//Users u = new Clientes(c);
@@ -155,7 +173,8 @@ public class Register extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(557, 169, 86, 59);
+		btnNewButton.setBounds(331, 178, 164, 97);
 		contentPane.add(btnNewButton);
+		
 			}
 	}

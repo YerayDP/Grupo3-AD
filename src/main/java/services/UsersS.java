@@ -155,7 +155,7 @@ public class UsersS {
 	        	consulta.setString(1, user.getDni());
 	        	consulta.setString(2, user.getNombre());
 	        	consulta.setString(3, user.getApellidos());
-	        	consulta.setDate(4, null);
+	        	consulta.setDate(4, user.getFecha_nacimiento());
 	        	consulta.setString(5, user.getImagen());
 	        	consulta.setString(6, user.getRol());
 	  	      	consulta.setString(7, user.getUsername());

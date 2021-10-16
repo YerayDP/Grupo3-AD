@@ -6,9 +6,9 @@ public class Clientes extends Users{
 	
 	private String imagen;
 
-	public Clientes(String dni, String nombre, String apellidos, String poblacion, String rol, String username,
+	public Clientes(String dni, String nombre, String apellidos, String rol, String username,
 			String password, Date fecha_nacimiento2, String imagen) {
-		super(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento2);
+		super(dni, nombre, apellidos, rol, username, password, fecha_nacimiento2);
 		this.imagen = imagen;
 	}
 

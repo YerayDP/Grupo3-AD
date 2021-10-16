@@ -9,7 +9,7 @@ public class Empleados extends Users{
 	
 	public Empleados(String dni, String nombre, String apellidos, String poblacion, String rol,
 			String username, String password, Date fecha_nacimiento) {
-		super(dni, nombre, apellidos, poblacion, rol, username, password, fecha_nacimiento);
+		super(dni, nombre, apellidos, rol, username, password, fecha_nacimiento);
 		
 	}
 

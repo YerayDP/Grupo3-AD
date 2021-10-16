@@ -6,7 +6,7 @@ public class Users {
 
 	private String dni,nombre,apellidos,rol,username,password;
 	private Date fecha_nacimiento;
-	public Users(String dni, String nombre, String apellidos, String poblacion, String rol,
+	public Users(String dni, String nombre, String apellidos, String rol,
 			String username, String password, Date fecha_nacimiento2)
 	{
 		this.dni = dni;
