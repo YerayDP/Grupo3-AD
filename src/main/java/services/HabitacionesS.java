@@ -17,15 +17,16 @@ public class HabitacionesS {
 	public static void insert(Habitaciones ha) throws SQLException
 	{
 		
-	        String sql = "INSERT INTO habitaciones(numHabitacion, precioNoche, tipo, extras) VALUES(?,?,?,?)";
+	        String sql = "INSERT INTO habitaciones(id_hotel,numHabitacion, precioNoche, tipo, extras) VALUES(?,?,?,?,?)";
 
 	        try (Connection conn = DBC.createNewDBconnection();
 	                PreparedStatement consulta = conn.prepareStatement(sql)) {
-	        		        	
-	        	consulta.setInt(1, ha.getNumHabitacion());
-	        	consulta.setInt(2, ha.getPrecioNoche());
-	        	consulta.setString(3, ha.getTipo());
-	        	consulta.setString(4, ha.getExtras());
+	        	
+	        	consulta.setInt(1, ha.getId_hotel());
+	        	consulta.setInt(2, ha.getNumHabitacion());
+	        	consulta.setInt(3, ha.getPrecioNoche());
+	        	consulta.setString(4, ha.getTipo());
+	        	consulta.setString(5, ha.getExtras());
 
 
 	            consulta.executeUpdate();
@@ -56,7 +57,7 @@ public class HabitacionesS {
 	     	 // loop through the result set
 	     	 while (rs.next()) {
 	     		 
-	     		ha = new Habitaciones(rs.getInt("numHabitacion"), rs.getInt("precioNoche"), rs.getString("tipo"), rs.getString("extras"));
+	     		ha = new Habitaciones(rs.getInt("id_hotel"),rs.getInt("numHabitacion"), rs.getInt("precioNoche"), rs.getString("tipo"), rs.getString("extras"));
 	     		habitaciones.add(ha);
 	     	 }
 	      } catch (SQLException e) {

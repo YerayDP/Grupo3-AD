@@ -46,7 +46,7 @@ public class ReservaI extends JFrame {
 	 */
 	public ReservaI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 801, 418);
+		setBounds(100, 100, 625, 385);
 		contentPane = new JPanel();
 		setLocationRelativeTo( null );
 		setTitle("Realizar reserva");
@@ -68,7 +68,7 @@ public class ReservaI extends JFrame {
 		
 		
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Realizar Reserva");
 		btnNewButton.setBounds(247, 284, 147, 41);
 		contentPane.add(btnNewButton);
 		
@@ -110,6 +110,7 @@ public class ReservaI extends JFrame {
 
 				Reservas res = new Reservas(1,hotel,habitacion,fecha_inicio,fecha_fin);
 
+				
 				try {
 					ReservasS.insert(res);
 					setVisible(false);

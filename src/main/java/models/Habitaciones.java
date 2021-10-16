@@ -2,16 +2,17 @@ package models;
 
 public class Habitaciones {
 
-	private int numHabitacion, precioNoche;
+	private int numHabitacion, precioNoche, id_hotel;
 	private String tipo, extras;
-	
+
 	public Habitaciones() {
 		
 		super();
 	}
 	
-	public Habitaciones(int numHabitacion, int precioNoche, String tipo, String extras) {
+	public Habitaciones(int id_hotel,int numHabitacion, int precioNoche, String tipo, String extras) {
 		super();
+		this.id_hotel= id_hotel;
 		this.numHabitacion = numHabitacion;
 		this.precioNoche = precioNoche;
 		this.tipo = tipo;
@@ -23,6 +24,14 @@ public class Habitaciones {
 	public void setNumHabitacion(int numHabitacion) {
 		this.numHabitacion = numHabitacion;
 	}
+	public int getId_hotel() {
+		return id_hotel;
+	}
+
+	public void setId_hotel(int id_hotel) {
+		this.id_hotel = id_hotel;
+	}
+
 	public int getPrecioNoche() {
 		return precioNoche;
 	}

@@ -23,7 +23,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.swing.JTable;
@@ -63,7 +66,7 @@ public class Cliente extends JFrame {
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
 		setLocationRelativeTo( null );
-		setTitle("Cliente");
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -182,34 +185,22 @@ public class Cliente extends JFrame {
 		btnNewButton_1.setBounds(262, 300, 180, 56);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
-				final Connection conD = DBC.createNewDBconnection();
 
-				int row = table_1.getSelectedRow();
-				String cell = table_1.getModel().getValueAt(row, 4).toString();
-
-					String sql = "DELETE FROM reserva WHERE fecha_entrada = '"+cell+"'";
-					try {
-						PreparedStatement pst = conD.prepareStatement(sql);
-						pst.execute();
-						modelo.fireTableDataChanged();
-						JTable table_2 = new JTable(modelo);
-						table_2.setBounds(10, 67, 446, 223);
-						
-						
-						contentPane.add(table_2);
-						contentPane.invalidate();
-						contentPane.validate();
-						contentPane.repaint();
-						JOptionPane.showMessageDialog(null, "Borrado");
-						setVisible(false);
-
-					} catch (Exception e2) {
-						// TODO: handle exception
-					}
-
+				ReservaCAN ai;
+				try {
+					ai = new ReservaCAN();
+					setVisible(false);
+					ai.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
+
+			}
 		});
 		
 	

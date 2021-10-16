@@ -33,6 +33,7 @@ public class HabitacionesI extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_6;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -64,57 +65,66 @@ public class HabitacionesI extends JFrame {
 		contentPane.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(284, 42, 143, 36);
+		textField.setBounds(284, 65, 143, 36);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(284, 88, 143, 36);
+		textField_1.setBounds(284, 111, 143, 36);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(284, 134, 143, 36);
+		textField_2.setBounds(284, 157, 143, 36);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(284, 180, 143, 36);
+		textField_6.setBounds(284, 203, 143, 36);
 		contentPane.add(textField_6);
 		textField_6.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Numero de habitacion");
-		lblNewLabel.setBounds(10, 42, 250, 36);
+		lblNewLabel.setBounds(10, 65, 250, 36);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Precio por noche");
-		lblNewLabel_1.setBounds(10, 88, 250, 39);
+		lblNewLabel_1.setBounds(10, 111, 250, 39);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Tipo de habiatcion");
-		lblNewLabel_2.setBounds(10, 134, 267, 36);
+		lblNewLabel_2.setBounds(10, 157, 267, 36);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_6 = new JLabel("Extras");
-		lblNewLabel_6.setBounds(10, 180, 250, 36);
+		lblNewLabel_6.setBounds(10, 203, 250, 36);
 		contentPane.add(lblNewLabel_6);
 		
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.setBounds(472, 65, 159, 135);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblIdHotel = new JLabel("ID Hotel");
+		lblIdHotel.setBounds(10, 18, 250, 36);
+		contentPane.add(lblIdHotel);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(284, 18, 143, 36);
+		contentPane.add(textField_3);
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				
+				int id_hotel = Integer.parseInt(textField_3.getText());
 				int numHabitaciones = Integer.parseInt(textField.getText());
 				int precioNoche = Integer.parseInt(textField_1.getText());
 				String tipo = textField_2.getText();
 				String extras = textField_6.getText();
 				
-				Habitaciones hab = new Habitaciones(numHabitaciones, precioNoche, tipo, extras);
+				Habitaciones hab = new Habitaciones(id_hotel,numHabitaciones, precioNoche, tipo, extras);
 				
 				try {
 					HabitacionesS.insert(hab);

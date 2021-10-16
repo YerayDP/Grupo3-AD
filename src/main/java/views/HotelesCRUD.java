@@ -178,11 +178,7 @@ public class HotelesCRUD extends JFrame {
 		
 				
 
-				String sql = "UPDATE hoteles \r\n "
-						+ "SET direccion = NULL WHERE telefono = '"+telefono+"'"
-						+ " ;UPDATE hoteles \r\n "
-						+ "SET telefono = NULL WHERE nombre = '"+nombre+"'"
-						+ " ;UPDATE hoteles \r\n"
+				String sql = "UPDATE hoteles \r\n"
 						+ "SET  nombre = '" + NewNombre + "' , descripcion = '" + NewDesc + "' , ciudad = '" + NewCiudad + 
 						"' , direccion = '" + NewDir + "' , telefono = '" + NewTel + "' WHERE nombre = '" + nombre + "'" ;
 			

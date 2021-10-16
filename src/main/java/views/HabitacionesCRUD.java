@@ -94,6 +94,7 @@ public class HabitacionesCRUD extends JFrame {
 		int cantidadColumnas = rsMd.getColumnCount();
 
 		modelo.addColumn("ID");
+		modelo.addColumn("id_hotel");
 		modelo.addColumn("numHabitacion");
 		modelo.addColumn("precioNoche");
 		modelo.addColumn("tipo");
