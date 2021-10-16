@@ -171,4 +171,32 @@ public class UsersS {
 				  
 	}
 	
+	
+	public static Clientes cliente(Connection conexion,String u, String p) throws ClassNotFoundException{
+	      //String sql = "SELECT * FROM users" ;
+	      String sql = "SELECT * FROM users WHERE username=? AND password=?" ;
+
+	      Clientes c = null;
+	      
+	      try {
+	   
+	    	  PreparedStatement consulta = conexion.prepareStatement(sql);
+	    	  consulta.setString(1, u);
+	    	  consulta.setString(2, p);
+	    	  
+	     	 //
+	     	 ResultSet rs  = consulta.executeQuery();
+	     	 // loop through the result set
+	     	 while (rs.next()) {
+	     		 
+	     		 c = new Clientes(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellidos"), rs.getString("rol"), rs.getString("username"), rs.getString("password"),  rs.getDate("fecha_nacimiento"),rs.getString("imagen"));
+	     	 }
+	      } catch (SQLException e) {
+	     	 System.out.println(e.getMessage());
+	      }
+	      
+	      return c;
+	      
+		 }
+	
 }

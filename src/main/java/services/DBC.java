@@ -25,6 +25,7 @@ public class DBC {
 		//UsersS.select();
 		//UsersS.selectct(createNewDBconnection());
 		//ComentariosS.Hoteles(createNewDBconnection());
+		UsersS.cliente(createNewDBconnection(), "pablo", "pablo");
 		
 	  }
 

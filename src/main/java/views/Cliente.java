@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import models.Clientes;
+import models.Empleados;
 import models.Users;
 import services.DBC;
 
@@ -34,6 +35,7 @@ import java.awt.event.ActionEvent;
 public class Cliente extends JFrame {
 
 	private JPanel contentPane;
+	static private Clientes c = new Clientes();
 
 
 	/**
@@ -43,7 +45,7 @@ public class Cliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Cliente frame = new Cliente();
+					Cliente frame = new Cliente(c);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +58,7 @@ public class Cliente extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public Cliente() throws SQLException {
+	public Cliente(final Clientes c) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
@@ -115,6 +117,15 @@ public class Cliente extends JFrame {
 		contentPane.add(lblPersonal);
 		
 		JButton btnNewButton_3_1 = new JButton("Ver datos de usuario");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+				VerDatosC v =  new VerDatosC(c);
+				v.setVisible(true);
+				
+			}
+		});
 		btnNewButton_3_1.setBounds(645, 91, 132, 56);
 		contentPane.add(btnNewButton_3_1);
 		

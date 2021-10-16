@@ -11,6 +11,12 @@ public class Clientes extends Users{
 		super(dni, nombre, apellidos, rol, username, password, fecha_nacimiento2);
 		this.imagen = imagen;
 	}
+	
+
+	public Clientes() {
+	}
+
+
 
 	public String getImagen() {
 		return imagen;

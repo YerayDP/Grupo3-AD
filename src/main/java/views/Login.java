@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
+import models.Clientes;
 import models.Empleados;
 import models.Users;
 import services.DBC;
@@ -107,7 +108,8 @@ public class Login extends JFrame {
 						else if(em.getUsername().equals(textField.getText()) && em.getPassword().equals(textField_1.getText()) && em.getRol().equals("cliente"))
 						{
 							registrado=false;
-							Cliente c = new Cliente();
+							Clientes cli = UsersS.cliente(DBC.createNewDBconnection(), textField.getText(), textField_1.getText());
+							Cliente c = new Cliente(cli);
 							setVisible(false);
 							c.setVisible(true);
 						}

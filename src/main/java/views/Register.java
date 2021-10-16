@@ -166,7 +166,7 @@ public class Register extends JFrame {
 				c.setImagen(ruta);
 				try {
 					UsersS.insertC(c);
-					//Users u = new Clientes(c);
+					Cliente cli = new Cliente(c);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
