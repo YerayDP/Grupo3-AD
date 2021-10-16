@@ -121,8 +121,14 @@ public class Cliente extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				setVisible(false);
-				VerDatosC v =  new VerDatosC(c);
-				v.setVisible(true);
+				VerDatosC v;
+				try {
+					v = new VerDatosC(c);
+					v.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
