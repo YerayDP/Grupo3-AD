@@ -64,7 +64,7 @@ public class ReservaCAN extends JFrame {
 		final Connection con = DBC.createNewDBconnection();
 
 		String sql = "Select H.Nombre, R.* FROM  reserva R "
-				+ " JOIN hoteles H ON H.id = R.id_hotel WHERE R.fecha_entrada>(SELECT SYSDATE() + 1)";
+				+ " JOIN hoteles H ON H.id = R.id_hotel WHERE R.fecha_entrada>(SELECT SYSDATE() + 2)";
 
 		ps = con.prepareStatement(sql);
 
