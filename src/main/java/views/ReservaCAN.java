@@ -23,11 +23,13 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import models.Clientes;
 import services.DBC;
 
 public class ReservaCAN extends JFrame {
 
 	private JPanel contentPane;
+	static private Clientes c = new Clientes();
 
 	/**
 	 * Launch the application.
@@ -36,7 +38,7 @@ public class ReservaCAN extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReservaCAN frame = new ReservaCAN();
+					ReservaCAN frame = new ReservaCAN(c);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,7 @@ public class ReservaCAN extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public ReservaCAN() throws SQLException {
+	public ReservaCAN(Clientes c) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 359);
 		setLocationRelativeTo( null );
@@ -63,8 +65,7 @@ public class ReservaCAN extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "Select H.Nombre, R.* FROM  reserva R "
-				+ " JOIN hoteles H ON H.id = R.id_hotel WHERE R.fecha_entrada>(SELECT SYSDATE() + 2)";
+		String sql = "SELECT H.Nombre, R.*,U.dni FROM reserva R JOIN users U JOIN hoteles H ON H.id = R.id_hotel WHERE U.dni='"+c.getDni()+"' AND R.fecha_entrada>(SELECT SYSDATE() + 2)";
 
 		ps = con.prepareStatement(sql);
 
@@ -79,6 +80,7 @@ public class ReservaCAN extends JFrame {
 		modelo.addColumn("id_habitacion");
 		modelo.addColumn("id_usuario");
 		modelo.addColumn("fecha_entrada");
+		modelo.addColumn("fecha_salida");
 		modelo.addColumn("fecha_salida");
 		
 

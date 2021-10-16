@@ -148,8 +148,7 @@ public class Cliente extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "Select H.Nombre, R.* FROM  reserva R "
-				+ " JOIN hoteles H ON H.id = R.id_hotel WHERE R.fecha_salida<(SELECT SYSDATE())";
+		String sql = "Select H.Nombre, R.* FROM  Users U JOIN reserva R JOIN hoteles H ON H.id = R.id_hotel WHERE U.dni= '"+c.getDni()+"' AND R.fecha_salida<(SELECT SYSDATE())";
 
 		ps = con.prepareStatement(sql);
 
@@ -191,7 +190,7 @@ public class Cliente extends JFrame {
 
 				ReservaCAN ai;
 				try {
-					ai = new ReservaCAN();
+					ai = new ReservaCAN(c);
 					setVisible(false);
 					ai.setVisible(true);
 				} catch (SQLException e1) {
