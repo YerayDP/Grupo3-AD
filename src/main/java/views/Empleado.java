@@ -32,7 +32,7 @@ import javax.swing.JLabel;
 public class Empleado extends JFrame {
 
 	private JPanel contentPane;
-	static private Empleados e = new Empleados();
+	static private Empleados emp = new Empleados();
 
 	/**
 	 * Launch the application.
@@ -41,7 +41,7 @@ public class Empleado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Empleado frame = new Empleado(e);
+					Empleado frame = new Empleado(emp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class Empleado extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public Empleado(Empleados e) throws SQLException {
+	public Empleado(final Empleados emp) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 682, 456);
 		contentPane = new JPanel();
@@ -107,7 +107,8 @@ public class Empleado extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					Valoraciones v = new Valoraciones();
+					Valoraciones v = new Valoraciones(emp);
+					setVisible(false);
 					v.setVisible(true);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
@@ -131,7 +132,7 @@ public class Empleado extends JFrame {
 
 		ps = con.prepareStatement(sql);
 		
-		ps.setString(1,e.getDni());
+		ps.setString(1,emp.getDni());
 
 		rs = ps.executeQuery();
 
@@ -169,10 +170,35 @@ public class Empleado extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("Administracion habitaciones");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					HabitacionesCRUD hc = new HabitacionesCRUD(emp);
+					setVisible(false);
+					hc.setVisible(true);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_2.setBounds(55, 132, 160, 40);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Administracion de hoteles");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					HotelesCRUD hoc = new HotelesCRUD(emp);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton_3.setBounds(387, 132, 160, 40);
 		contentPane.add(btnNewButton_3);
 		

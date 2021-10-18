@@ -36,7 +36,8 @@ public class HotelesI extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
-
+	static private Empleados emp = new Empleados();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -44,7 +45,7 @@ public class HotelesI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HotelesI frame = new HotelesI();
+					HotelesI frame = new HotelesI(emp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +57,7 @@ public class HotelesI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HotelesI() {
+	public HotelesI(final Empleados emp) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 682, 456);
 		contentPane = new JPanel();
@@ -135,7 +136,7 @@ public class HotelesI extends JFrame {
 				try {
 					HotelesS.insert(ho);
 					setVisible(false);
-					HotelesCRUD H = new HotelesCRUD();
+					HotelesCRUD H = new HotelesCRUD(emp);
 					H.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

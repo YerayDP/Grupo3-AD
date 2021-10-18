@@ -96,11 +96,11 @@ public class ReservaCAN extends JFrame {
 		
 		final JTable table_1 = new JTable(modelo);
 		table_1.setFillsViewportHeight(true);
-		table_1.setBounds(10, 11, 446, 234);
+		table_1.setBounds(10, 45, 446, 215);
 		contentPane.add(table_1);
 		
 		JButton Cancelar = new JButton("Cancelar");
-		Cancelar.setBounds(143, 256, 172, 53);
+		Cancelar.setBounds(149, 269, 172, 53);
 		contentPane.add(Cancelar);
 		Cancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,6 +158,22 @@ public class ReservaCAN extends JFrame {
 				}
 			Cliente cs = new Cliente(c);
 		});
+		
+		JButton btnNewButton_5 = new JButton("volver");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Cliente cliente = new Cliente(c);
+					setVisible(false);
+					cliente.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_5.setBounds(10, 10, 72, 33);
+		contentPane.add(btnNewButton_5);
 		
 	}
 }

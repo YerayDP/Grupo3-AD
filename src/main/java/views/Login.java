@@ -113,6 +113,12 @@ public class Login extends JFrame {
 							setVisible(false);
 							c.setVisible(true);
 						}
+						else if(em.getUsername().equals(textField.getText()) && em.getPassword().equals(textField_1.getText()) && em.getRol().equals("admin"))
+						{
+							Admin ad = new Admin();
+							setVisible(false);
+							ad.setVisible(true);
+						}
 						
 					}
 					

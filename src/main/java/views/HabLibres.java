@@ -20,12 +20,14 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import models.Empleados;
 import services.DBC;
 
 public class HabLibres extends JFrame {
 
 	private JPanel contentPane;
 	private static Date date;
+	private static Empleados emp = new Empleados();
 
 	/**
 	 * Launch the application.
@@ -88,8 +90,27 @@ public class HabLibres extends JFrame {
 		
 
 		final JTable table_1 = new JTable(modelo);
-		table_1.setBounds(50, 48, 690, 220);
+		table_1.setBounds(45, 53, 690, 258);
 		contentPane.add(table_1);
+		
+		JButton btnNewButton_1 = new JButton("volver");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Empleado emple;
+				try {
+					emple = new Empleado(emp);
+					setVisible(false);
+					emple.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+		btnNewButton_1.setBounds(10, 10, 72, 33);
+		contentPane.add(btnNewButton_1);
+
 		
 	}
 

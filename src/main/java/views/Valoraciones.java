@@ -17,7 +17,9 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import models.Clientes;
 import models.Comentarios;
+import models.Empleados;
 import services.ComentariosS;
 import services.DBC;
 import services.HotelesS;
@@ -31,6 +33,7 @@ import javax.swing.JTextField;
 public class Valoraciones extends JFrame {
 
 	private JPanel contentPane;
+	static private Empleados emp = new Empleados();
 
 	/**
 	 * Launch the application.
@@ -39,7 +42,7 @@ public class Valoraciones extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Valoraciones frame = new Valoraciones();
+					Valoraciones frame = new Valoraciones(emp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +55,7 @@ public class Valoraciones extends JFrame {
 	 * Create the frame.
 	 * @throws ClassNotFoundException 
 	 */
-	public Valoraciones() throws ClassNotFoundException {
+	public Valoraciones(final Empleados emp) throws ClassNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
@@ -69,16 +72,16 @@ public class Valoraciones extends JFrame {
 			comboBox.addItem(id);
 			
 		}
-		comboBox.setBounds(20, 100, 121, 21);
+		comboBox.setBounds(20, 176, 121, 21);
 		contentPane.add(comboBox);
 		
 		JLabel lblNewLabel = new JLabel("Elija un hotel");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel.setBounds(10, 10, 131, 68);
+		lblNewLabel.setBounds(20, 89, 131, 68);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Aceptar");
-		btnNewButton.setBounds(20, 147, 121, 53);
+		btnNewButton.setBounds(20, 227, 121, 53);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_3 = new JLabel("Cliente");
@@ -90,6 +93,22 @@ public class Valoraciones extends JFrame {
 		lblNewLabel_4.setFont(new Font("Sitka Text", Font.BOLD, 12));
 		lblNewLabel_4.setBounds(477, 49, 101, 21);
 		contentPane.add(lblNewLabel_4);
+		
+		JButton btnNewButton_1 = new JButton("volver");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Empleado empleado = new Empleado(emp);
+					setVisible(false);
+					empleado.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(20, 30, 72, 33);
+		contentPane.add(btnNewButton_1);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			

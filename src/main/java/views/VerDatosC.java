@@ -20,7 +20,11 @@ import services.DBC;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class VerDatosC extends JFrame {
 
@@ -47,7 +51,7 @@ public class VerDatosC extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public VerDatosC(Clientes c) throws SQLException {
+	public VerDatosC(final Clientes c) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
@@ -111,5 +115,21 @@ public class VerDatosC extends JFrame {
 		
 		System.out.println(c.getImagen());
 
+		
+		JButton btnNewButton_5 = new JButton("volver");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Cliente cliente = new Cliente(c);
+					setVisible(false);
+					cliente.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_5.setBounds(10, 10, 72, 33);
+		contentPane.add(btnNewButton_5);
 }
 }

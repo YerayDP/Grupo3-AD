@@ -34,6 +34,7 @@ public class HabitacionesI extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_6;
 	private JTextField textField_3;
+	static private Empleados emp = new Empleados();
 
 	/**
 	 * Launch the application.
@@ -42,7 +43,7 @@ public class HabitacionesI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HabitacionesI frame = new HabitacionesI();
+					HabitacionesI frame = new HabitacionesI(emp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +55,7 @@ public class HabitacionesI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HabitacionesI() {
+	public HabitacionesI(final Empleados emp) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 682, 300);
 		contentPane = new JPanel();
@@ -129,7 +130,7 @@ public class HabitacionesI extends JFrame {
 				try {
 					HabitacionesS.insert(hab);
 					setVisible(false);
-					HabitacionesCRUD HUD = new HabitacionesCRUD();
+					HabitacionesCRUD HUD = new HabitacionesCRUD(emp);
 					HUD.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -141,5 +142,22 @@ public class HabitacionesI extends JFrame {
 							
 			}
 		});
+		
+		JButton btnNewButton_1 = new JButton("volver");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Empleado empleado = new Empleado(emp);
+					setVisible(false);
+					empleado.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(20, 30, 72, 33);
+		contentPane.add(btnNewButton_1);
+		
 	}
 }

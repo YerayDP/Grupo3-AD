@@ -118,12 +118,26 @@ public class ComentariosI extends JFrame {
 				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
-				}
-				
-				
-				
+				}			
 							
 			}
 		});
+		
+		JButton btnNewButton_5 = new JButton("volver");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Cliente cliente = new Cliente(cli);
+					setVisible(false);
+					cliente.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_5.setBounds(10, 10, 72, 33);
+		contentPane.add(btnNewButton_5);
+		
 	}
 }

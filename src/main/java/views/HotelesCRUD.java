@@ -31,6 +31,7 @@ import javax.swing.JOptionPane;
 public class HotelesCRUD extends JFrame {
 
 	private JPanel contentPane;
+	static private Empleados emp = new Empleados();
 
 	/**
 	 * Launch the application.
@@ -39,7 +40,7 @@ public class HotelesCRUD extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HotelesCRUD frame = new HotelesCRUD();
+					HotelesCRUD frame = new HotelesCRUD(emp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +54,7 @@ public class HotelesCRUD extends JFrame {
 	 * @throws ClassNotFoundException 
 	 * @throws SQLException 
 	 */
-	public HotelesCRUD() throws ClassNotFoundException, SQLException {
+	public HotelesCRUD(final Empleados emp) throws ClassNotFoundException, SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 375);
 		contentPane = new JPanel();
@@ -64,14 +65,14 @@ public class HotelesCRUD extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnNewButton = new JButton("Insertar");
-		btnNewButton.setBounds(550, 10, 224, 82);
+		btnNewButton.setBounds(550, 51, 224, 73);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				HotelesI ai = new HotelesI();
+				HotelesI ai = new HotelesI(emp);
 				setVisible(false);
 				ai.setVisible(true);
 
@@ -113,11 +114,11 @@ public class HotelesCRUD extends JFrame {
 		
 
 		final JTable table_1 = new JTable(modelo);
-		table_1.setBounds(10, 10, 530, 315);
+		table_1.setBounds(10, 51, 530, 274);
 		contentPane.add(table_1);
 
 		JButton btnNewButton_1 = new JButton("Borrar");
-		btnNewButton_1.setBounds(550, 243, 224, 82);
+		btnNewButton_1.setBounds(550, 252, 224, 73);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 
@@ -142,7 +143,7 @@ public class HotelesCRUD extends JFrame {
 					contentPane.repaint();
 					JOptionPane.showMessageDialog(null, "Borrado");
 					setVisible(false);
-					HotelesCRUD HUD = new HotelesCRUD();
+					HotelesCRUD HUD = new HotelesCRUD(emp);
 
 					HUD.setVisible(true);
 
@@ -155,7 +156,7 @@ public class HotelesCRUD extends JFrame {
 		});
 
 		JButton btnNewButton_2 = new JButton("Modificar");
-		btnNewButton_2.setBounds(550, 127, 224, 82);
+		btnNewButton_2.setBounds(550, 154, 224, 73);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 
@@ -196,7 +197,7 @@ public class HotelesCRUD extends JFrame {
 					contentPane.repaint();
 					JOptionPane.showMessageDialog(null, "Actualizado");
 					setVisible(false);
-					HotelesCRUD HUD = new HotelesCRUD();
+					HotelesCRUD HUD = new HotelesCRUD(emp);
 
 					HUD.setVisible(true);
 				} catch (SQLException e1) {
@@ -213,6 +214,21 @@ public class HotelesCRUD extends JFrame {
 			}
 		});
 
+		JButton btnNewButton_5 = new JButton("volver");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Empleado empleado = new Empleado(emp);
+					setVisible(false);
+					empleado.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_5.setBounds(10, 10, 72, 33);
+		contentPane.add(btnNewButton_5);
 
 	}
 }

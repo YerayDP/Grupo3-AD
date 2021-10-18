@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import models.Empleados;
 import models.Habitaciones;
 import models.Hoteles;
 import services.DBC;
@@ -31,6 +32,7 @@ import javax.swing.JOptionPane;
 public class HabitacionesCRUD extends JFrame {
 
 	private JPanel contentPane;
+	static private Empleados emp = new Empleados();
 
 	/**
 	 * Launch the application.
@@ -39,7 +41,7 @@ public class HabitacionesCRUD extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HabitacionesCRUD frame = new HabitacionesCRUD();
+					HabitacionesCRUD frame = new HabitacionesCRUD(emp);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +55,7 @@ public class HabitacionesCRUD extends JFrame {
 	 * @throws ClassNotFoundException 
 	 * @throws SQLException 
 	 */
-	public HabitacionesCRUD() throws ClassNotFoundException, SQLException {
+	public HabitacionesCRUD(final Empleados emp) throws ClassNotFoundException, SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 375);
 		contentPane = new JPanel();
@@ -64,14 +66,14 @@ public class HabitacionesCRUD extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnNewButton = new JButton("Insertar");
-		btnNewButton.setBounds(550, 39, 224, 72);
+		btnNewButton.setBounds(550, 59, 224, 72);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				HabitacionesI ai = new HabitacionesI();
+				HabitacionesI ai = new HabitacionesI(emp);
 				setVisible(false);
 				ai.setVisible(true);
 
@@ -113,11 +115,11 @@ public class HabitacionesCRUD extends JFrame {
 		
 
 		final JTable table_1 = new JTable(modelo);
-		table_1.setBounds(10, 10, 530, 315);
+		table_1.setBounds(10, 56, 530, 269);
 		contentPane.add(table_1);
 
 		JButton btnNewButton_2 = new JButton("Borrar");
-		btnNewButton_2.setBounds(550, 146, 224, 72);
+		btnNewButton_2.setBounds(550, 155, 224, 72);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 
@@ -142,7 +144,7 @@ public class HabitacionesCRUD extends JFrame {
 					contentPane.repaint();
 					JOptionPane.showMessageDialog(null, "Borrado");
 					setVisible(false);
-					HabitacionesCRUD HUD = new HabitacionesCRUD();
+					HabitacionesCRUD HUD = new HabitacionesCRUD(emp);
 
 					HUD.setVisible(true);
 
@@ -197,7 +199,7 @@ public class HabitacionesCRUD extends JFrame {
 					contentPane.repaint();
 					JOptionPane.showMessageDialog(null, "Actualizado");
 					setVisible(false);
-					HabitacionesCRUD HUD = new HabitacionesCRUD();
+					HabitacionesCRUD HUD = new HabitacionesCRUD(emp);
 
 					HUD.setVisible(true);
 				} catch (SQLException e1) {
@@ -215,9 +217,21 @@ public class HabitacionesCRUD extends JFrame {
 		});
 		
 		
-		
-		
-
+		JButton btnNewButton_1 = new JButton("volver");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Empleado empleado = new Empleado(emp);
+					setVisible(false);
+					empleado.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_1.setBounds(10, 10, 72, 33);
+		contentPane.add(btnNewButton_1);
 		
 	}
 }
