@@ -51,7 +51,7 @@ public class ReservaCAN extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public ReservaCAN(Clientes c) throws SQLException {
+	public ReservaCAN(final Clientes c) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 481, 359);
 		setLocationRelativeTo( null );
@@ -141,6 +141,9 @@ public class ReservaCAN extends JFrame {
 							contentPane.repaint();
 							JOptionPane.showMessageDialog(null, "Borrado");
 							setVisible(false);
+							Cliente cl = new Cliente(c);
+							cl.setVisible(true);
+							
 
 						} catch (Exception e2) {
 							// TODO: handle exception
@@ -153,7 +156,7 @@ public class ReservaCAN extends JFrame {
 					
 
 				}
-				
+			Cliente cs = new Cliente(c);
 		});
 		
 	}

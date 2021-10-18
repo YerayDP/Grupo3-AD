@@ -61,7 +61,7 @@ public class Cliente extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
-	public Cliente(final Clientes c) throws SQLException {
+	public Cliente( final Clientes c) throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();

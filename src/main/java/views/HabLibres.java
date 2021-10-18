@@ -25,7 +25,7 @@ import services.DBC;
 public class HabLibres extends JFrame {
 
 	private JPanel contentPane;
-	private static JDateChooser date;
+	private static Date date;
 
 	/**
 	 * Launch the application.
@@ -48,8 +48,8 @@ public class HabLibres extends JFrame {
 	 * @param dateChooser 
 	 * @throws SQLException 
 	 */
-	public HabLibres(JDateChooser date) throws SQLException {
-		System.out.println(date.toString());
+	public HabLibres(Date fecha) throws SQLException {
+		System.out.println(fecha);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		setLocationRelativeTo(null);
@@ -62,7 +62,7 @@ public class HabLibres extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "SELECT DISTINCT HO.nombre,H.NUMHabitacion FROM habitaciones H JOIN reserva R JOIN hoteles HO WHERE H.ID NOT IN (SELECT id_habitacion FROM reserva WHERE '" +date+ "' BETWEEN fecha_entrada AND fecha_salida)";
+		String sql = "SELECT DISTINCT HO.nombre,H.NUMHabitacion FROM habitaciones H, hoteles HO WHERE H.ID NOT IN (SELECT DISTINCT id_habitacion FROM reserva WHERE '" +fecha+ "' BETWEEN fecha_entrada AND fecha_salida) AND HO.id=H.id_hotel";
 
 		ps = con.prepareStatement(sql);
 

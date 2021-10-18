@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -83,7 +84,8 @@ public class Empleado extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					HabLibres hl = new HabLibres(date);
+					Date fecha = new java.sql.Date(date.getDate().getTime());
+					HabLibres hl = new HabLibres(fecha);
 					setVisible(false);
 					hl.setVisible(true);
 				

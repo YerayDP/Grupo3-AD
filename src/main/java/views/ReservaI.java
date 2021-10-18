@@ -118,12 +118,8 @@ public class ReservaI extends JFrame {
 						int id = ComentariosS.id(DBC.createNewDBconnection(), c.getDni());
 						ReservasS.insert(res,id);
 						setVisible(false);
-						//Cliente cl = new Cliente();
-						setVisible(false);
-						//cl.setVisible(true);
-						//
-						//Cliente
-						//
+						Cliente cl = new Cliente(c);
+						cl.setVisible(true);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
