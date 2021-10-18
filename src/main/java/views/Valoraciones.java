@@ -31,7 +31,6 @@ import javax.swing.JTextField;
 public class Valoraciones extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
