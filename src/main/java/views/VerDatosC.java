@@ -71,7 +71,7 @@ public class VerDatosC extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Pablo\\Desktop\\yo2.PNG"));
+		lblNewLabel_2.setIcon(new ImageIcon(c.getImagen()));
 		lblNewLabel_2.setBounds(464, 10, 299, 280);
 		contentPane.add(lblNewLabel_2);
 		
