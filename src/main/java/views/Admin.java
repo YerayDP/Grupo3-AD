@@ -98,7 +98,7 @@ public class Admin extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users WHERE rol= 'empleado' ";
+		String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, imagen, username,password from users WHERE rol= 'empleado' ";
 
 		ps = con.prepareStatement(sql);
 
@@ -178,29 +178,29 @@ public class Admin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				int sr = table_1.getSelectedRow();
-				String id = modelo.getValueAt(sr, 0).toString();
-				String dni = modelo.getValueAt(sr, 1).toString();
-				String nombre = modelo.getValueAt(sr, 2).toString();
-				String apellidos = modelo.getValueAt(sr, 3).toString();
-				String fecha_nacimiento = modelo.getValueAt(sr, 4).toString();
-				String poblacion = modelo.getValueAt(sr, 5).toString();
-				String username = modelo.getValueAt(sr, 6).toString();
-				String password = modelo.getValueAt(sr, 7).toString();
+			
+				
+				String dni = modelo.getValueAt(0, 1).toString();
+				String nombre = modelo.getValueAt(0, 2).toString();
+				String apellidos = modelo.getValueAt(0, 3).toString();
+				String fecha_nacimiento = modelo.getValueAt(0, 4).toString();
+				String imagen = modelo.getValueAt(0, 5).toString();
+				String username = modelo.getValueAt(0, 6).toString();
+				String password = modelo.getValueAt(0, 7).toString();
 		
-				String NewId= JOptionPane.showInputDialog(null,"Introduzca nuevo ID",id);
+				
 				String NewDNI= JOptionPane.showInputDialog(null,"Introduzca nuevo DNI",dni);
 				String NewNombre= JOptionPane.showInputDialog(null,"Introduzca nuevo Nombre",nombre);
 				String NewApellidos= JOptionPane.showInputDialog(null,"Introduzca nuevos Apellidos",apellidos);
 				String NewFecha_nacimiento= JOptionPane.showInputDialog(null,"Introduzca nueva Fecha de nacimiento",fecha_nacimiento);
-				String NewPoblacion= JOptionPane.showInputDialog(null,"Introduzca nueva poblacion",poblacion);
+				String NewImagen= JOptionPane.showInputDialog(null,"Introduzca nueva imagen",imagen);
 				String NewUsername= JOptionPane.showInputDialog(null,"Introduzca nuevo username",username);
 				String NewPassword= JOptionPane.showInputDialog(null,"Introduzca nuevo password",password);
 				
 
 				String sql = "UPDATE users\r\n"
-						+ "SET ID = " + NewId + " , dni = " + NewDNI + " , nombre = '" + NewNombre + "' , apellidos = '" + NewApellidos + 
-						"' , fecha_nacimiento = '" + NewFecha_nacimiento + "' , poblacion = '" + NewPoblacion + "' , username = '" + NewUsername + "' , password = '" + NewPassword +"'" ;
+						+ "SET ID dni = " + NewDNI + " , nombre = '" + NewNombre + "' , apellidos = '" + NewApellidos + 
+						"' , fecha_nacimiento = '" + NewFecha_nacimiento + "' , imagen = '" + NewImagen + "' , username = '" + NewUsername + "' , password = '" + NewPassword +"'" ;
 			
 				try {
 					PreparedStatement pst = con.prepareStatement(sql);

@@ -137,11 +137,8 @@ public class Cliente extends JFrame {
 		});
 		btnNewButton_3_1.setBounds(645, 91, 132, 56);
 		contentPane.add(btnNewButton_3_1);
-		
-		JButton btnNewButton_3_2 = new JButton("Modificar usuario");
-		btnNewButton_3_2.setBounds(645, 170, 132, 56);
-		contentPane.add(btnNewButton_3_2);
 		contentPane.setLayout(null);
+		
 		
 		final DefaultTableModel modelo = new DefaultTableModel();
 		PreparedStatement ps = null;
