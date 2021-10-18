@@ -161,12 +161,15 @@ public class Register extends JFrame {
 				Date fn = new java.sql.Date(dateChooser.getDate().getTime());
 				String username = textField_4.getText();
 				String password = textField_3.getText();
-				System.out.println(fn);
+				
 				Clientes c = new Clientes(dni, nombre, apellidos,"cliente",username,password,fn ,ruta);
 				c.setImagen(ruta);
 				try {
 					UsersS.insertC(c);
 					Cliente cli = new Cliente(c);
+					Login l = new Login();
+					setVisible(false);
+					l.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

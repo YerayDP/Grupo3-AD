@@ -104,8 +104,8 @@ public class Cliente extends JFrame {
 		btnNewButton_3.setBounds(493, 91, 132, 56);
 		contentPane.add(btnNewButton_3);
 		
-		JLabel lblNewLabel = new JLabel("Reservas");
-		lblNewLabel.setBounds(182, 10, 116, 71);
+		JLabel lblNewLabel = new JLabel("Historial de reservas");
+		lblNewLabel.setBounds(88, 10, 272, 71);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 23));
 		contentPane.add(lblNewLabel);
 		
@@ -119,7 +119,7 @@ public class Cliente extends JFrame {
 		lblPersonal.setFont(new Font("Tahoma", Font.BOLD, 23));
 		contentPane.add(lblPersonal);
 		
-		JButton btnNewButton_3_1 = new JButton("Ver datos de usuario");
+		JButton btnNewButton_3_1 = new JButton("Mi perfil");
 		btnNewButton_3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

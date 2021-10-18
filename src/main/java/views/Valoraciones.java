@@ -79,6 +79,16 @@ public class Valoraciones extends JFrame {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.setBounds(20, 147, 121, 53);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_3 = new JLabel("Cliente");
+		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(226, 49, 92, 21);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Comentario");
+		lblNewLabel_4.setFont(new Font("Sitka Text", Font.BOLD, 12));
+		lblNewLabel_4.setBounds(477, 49, 101, 21);
+		contentPane.add(lblNewLabel_4);
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -112,7 +122,7 @@ public class Valoraciones extends JFrame {
 					        
 					        //String dni = modelo.getValueAt(table_1.getSelectedRow(), 0).toString();
 
-					        String sql = "Select id_cliente,comentario from comentarios where id_hotel=?";
+					        String sql = "Select U.nombre,C.comentario from comentarios C JOIN Users U  where C.id_hotel=?";
 
 					        ps = con.prepareStatement(sql);
 					        

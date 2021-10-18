@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 public class Home extends JFrame {
 
@@ -45,6 +46,8 @@ public class Home extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setForeground(Color.WHITE);
 		setLocationRelativeTo( null );
 		setTitle("Inicio");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
