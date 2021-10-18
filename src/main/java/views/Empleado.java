@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
+
 import models.Comentarios;
 import models.Empleados;
 import services.ComentariosS;
@@ -23,6 +25,8 @@ import services.DBC;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class Empleado extends JFrame {
 
@@ -64,9 +68,37 @@ public class Empleado extends JFrame {
 		btnNewButton.setBounds(40, 322, 141, 40);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Consultar habitaciones");
-		btnNewButton_1.setBounds(223, 322, 141, 40);
+		JButton btnNewButton_1 = new JButton("Consultar habitaciones libres ");
+		btnNewButton_1.setBounds(285, 310, 214, 64);
 		contentPane.add(btnNewButton_1);
+		
+		final JDateChooser date = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		date.setBounds(509, 322, 127, 27);
+		date.getJCalendar();
+		contentPane.add(date);
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					HabLibres hl = new HabLibres(date);
+					setVisible(false);
+					hl.setVisible(true);
+				
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+							
+			}
+		});
+		
+
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -130,6 +162,10 @@ public class Empleado extends JFrame {
 		contentPane.add(table_1);
 		
 		
+		JLabel lblNewLabel_1 = new JLabel("Introduzca fecha");
+		lblNewLabel_1.setBounds(519, 360, 107, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		
 	}
-
 }
