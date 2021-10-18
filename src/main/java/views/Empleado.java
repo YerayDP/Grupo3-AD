@@ -190,6 +190,8 @@ public class Empleado extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					HotelesCRUD hoc = new HotelesCRUD(emp);
+					setVisible(false);
+					hoc.setVisible(true);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -199,8 +201,24 @@ public class Empleado extends JFrame {
 				}
 			}
 		});
-		btnNewButton_3.setBounds(387, 132, 160, 40);
+		btnNewButton_3.setBounds(302, 132, 160, 40);
 		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_4 = new JButton("Ver clientes hospedados");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Consultar co = new Consultar();
+					setVisible(false);
+					co.setVisible(true);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_4.setBounds(48, 217, 167, 40);
+		contentPane.add(btnNewButton_4);
 		
 		
 	}
