@@ -85,7 +85,7 @@ public class Login extends JFrame {
 		lblNewLabel_2.setBounds(291, 23, 149, 48);
 		contentPane.add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Inicio de sesión");
+		JButton btnNewButton = new JButton("Inicio de sesión"); 
 		btnNewButton.setBounds(290, 272, 150, 62);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
