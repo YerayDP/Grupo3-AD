@@ -111,7 +111,7 @@ public class ReservaCAN extends JFrame {
 				final Connection conD = DBC.createNewDBconnection();
 
 				int row = table_1.getSelectedRow();
-				String cell = table_1.getModel().getValueAt(row, 4).toString();
+				String cell = table_1.getModel().getValueAt(row, 5).toString();
 					
 					String sql = "DELETE FROM reserva WHERE fecha_entrada = '"+cell+"'";
 					

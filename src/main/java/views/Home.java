@@ -97,7 +97,7 @@ public class Home extends JFrame {
 		lblNewLabel_7.setForeground(Color.GRAY);
 		lblNewLabel_7.setBackground(UIManager.getColor("Button.background"));
 		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\Pablo\\Desktop\\Hotell.PNG"));
-		lblNewLabel_7.setBounds(10, 25, 72, 123);
+		lblNewLabel_7.setBounds(10, 32, 72, 105);
 		contentPane.add(lblNewLabel_7);
 	}
 

@@ -12,7 +12,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
 
+import models.Clientes;
 import models.Reservas;
+import services.ComentariosS;
+import services.DBC;
 import services.ReservasS;
 
 import javax.swing.JLabel;
@@ -24,6 +27,7 @@ public class ReservaI extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	static private Clientes c = new Clientes();
 
 	/**
 	 * Launch the application.
@@ -32,7 +36,7 @@ public class ReservaI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReservaI frame = new ReservaI();
+					ReservaI frame = new ReservaI(c);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +48,7 @@ public class ReservaI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReservaI() {
+	public ReservaI(final Clientes c) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 625, 385);
 		contentPane = new JPanel();
@@ -101,29 +105,38 @@ public class ReservaI extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				int hotel = Integer.parseInt(textField_1.getText());
-				Date fecha_inicio = new java.sql.Date(dateChooser2.getDate().getTime());
-				Date fecha_fin = new java.sql.Date(dateChooser.getDate().getTime());
-				int habitacion = Integer.parseInt(textField_2.getText());
-
-				Reservas res = new Reservas(1,hotel,habitacion,fecha_inicio,fecha_fin);
-
-				
+				int id2;
 				try {
-					ReservasS.insert(res);
-					setVisible(false);
-					//Cliente cl = new Cliente();
-					setVisible(false);
-					//cl.setVisible(true);
-					//
-					//Cliente
-					//
-				} catch (SQLException e1) {
+					id2 = ComentariosS.id(DBC.createNewDBconnection(), c.getDni());
+					int hotel = Integer.parseInt(textField_1.getText());
+					Date fecha_inicio = new java.sql.Date(dateChooser2.getDate().getTime());
+					Date fecha_fin = new java.sql.Date(dateChooser.getDate().getTime());
+					int habitacion = Integer.parseInt(textField_2.getText());
+
+					Reservas res = new Reservas(hotel,id2,habitacion,fecha_inicio,fecha_fin);
+					try {
+						int id = ComentariosS.id(DBC.createNewDBconnection(), c.getDni());
+						ReservasS.insert(res,id);
+						setVisible(false);
+						//Cliente cl = new Cliente();
+						setVisible(false);
+						//cl.setVisible(true);
+						//
+						//Cliente
+						//
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
+				
+				
+
+				
+				
 							
 			}
 		});

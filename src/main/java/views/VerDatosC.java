@@ -95,9 +95,10 @@ public class VerDatosC extends JFrame {
 		lblNewLabel_7.setBounds(57, 160, 89, 32);
 		contentPane.add(lblNewLabel_7);
 		
-		/*JLabel lblNewLabel_8 = new JLabel(c.getFecha_nacimiento().toString());
+		@SuppressWarnings("deprecation")
+		JLabel lblNewLabel_8 = new JLabel(c.getFecha_nacimiento().toGMTString());
 		lblNewLabel_8.setBounds(159, 160, 170, 32);
-		contentPane.add(lblNewLabel_8);*/
+		contentPane.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel(c.getUsername());
 		lblNewLabel_9.setBounds(158, 213, 161, 32);

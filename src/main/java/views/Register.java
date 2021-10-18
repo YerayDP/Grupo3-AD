@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -16,6 +18,8 @@ import services.UsersS;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
@@ -134,6 +138,10 @@ public class Register extends JFrame {
 
 		
 		JFileChooser chooser = new JFileChooser();
+		FileFilter imageFilter = new FileNameExtensionFilter(
+			    "Image files", ImageIO.getReaderFileSuffixes());
+		chooser.setFileFilter(imageFilter);
+		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		chooser.setBounds(331, 45, 86, 97);
 		contentPane.add(chooser);
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

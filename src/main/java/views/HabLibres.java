@@ -51,7 +51,8 @@ public class HabLibres extends JFrame {
 	public HabLibres(JDateChooser date) throws SQLException {
 		System.out.println(date.toString());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 801, 417);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

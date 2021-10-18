@@ -5,8 +5,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import models.Clientes;
 import models.Comentarios;
 import models.Empleados;
 import services.ComentariosS;
@@ -28,9 +30,9 @@ import javax.swing.JComboBox;
 public class ComentariosI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_2;
 	private JButton btnNewButton;
+	static private Clientes cli = new Clientes();
 
 	/**
 	 * Launch the application.
@@ -39,7 +41,7 @@ public class ComentariosI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ComentariosI frame = new ComentariosI();
+					ComentariosI frame = new ComentariosI(cli);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +54,7 @@ public class ComentariosI extends JFrame {
 	 * Create the frame.
 	 * @throws ClassNotFoundException 
 	 */
-	public ComentariosI() throws ClassNotFoundException {
+	public ComentariosI(final Clientes cli) throws ClassNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 801, 417);
 		contentPane = new JPanel();
@@ -62,11 +64,6 @@ public class ComentariosI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Cliente");
-		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel.setBounds(57, 71, 123, 38);
-		contentPane.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("Hotel");
 		lblNewLabel_1.setFont(new Font("Sitka Text", Font.BOLD, 15));
 		lblNewLabel_1.setBounds(57, 119, 123, 38);
@@ -74,22 +71,17 @@ public class ComentariosI extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("Comentario");
 		lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		lblNewLabel_2.setBounds(57, 167, 123, 38);
+		lblNewLabel_2.setBounds(57, 193, 123, 38);
 		contentPane.add(lblNewLabel_2);
 		
-		textField = new JTextField();
-		textField.setBounds(190, 75, 135, 32);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(190, 167, 135, 32);
+		final JTextArea textField_2 = new JTextArea();
+		textField_2.setBounds(190, 167, 245, 90);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		final JComboBox<String> comboBox = new JComboBox<String>();
 		
-		List<String> hoteles = ComentariosS.Hoteles(DBC.createNewDBconnection());
+		List<String> hoteles = ComentariosS.Hoteles(DBC.createNewDBconnection(),cli.getDni());
 		for (String hotel : hoteles) {
 			comboBox.addItem(hotel);
 			
@@ -110,17 +102,25 @@ public class ComentariosI extends JFrame {
 				
 				String hotel = (String) comboBox.getSelectedItem();
 				
-				Comentarios c = new Comentarios();
-				c.setId_cliente(1);
-				c.setId_hotel(Integer.valueOf (hotel));
-				c.setComentario(textField_2.getText());
 				try {
-					ComentariosS.insert(c);
-					setVisible(false);
-				} catch (SQLException e1) {
+					int id_hotel = ComentariosS.id_hotel(DBC.createNewDBconnection(), hotel);
+					Comentarios c = new Comentarios();
+					c.setId_hotel(id_hotel);
+					c.setComentario(textField_2.getText());
+					try {
+						int id = ComentariosS.id(DBC.createNewDBconnection(), cli.getDni());
+						ComentariosS.insert(c,id);
+						setVisible(false);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
 				}
+				
+				
 				
 							
 			}

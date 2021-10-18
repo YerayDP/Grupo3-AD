@@ -98,7 +98,7 @@ public class Admin extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users where poblacion is not null";
+		String sql = "Select id, dni, nombre, apellidos, fecha_nacimiento, poblacion, username,password from users WHERE rol= 'empleado' ";
 
 		ps = con.prepareStatement(sql);
 

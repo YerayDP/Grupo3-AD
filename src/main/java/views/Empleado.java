@@ -166,6 +166,14 @@ public class Empleado extends JFrame {
 		lblNewLabel_1.setBounds(519, 360, 107, 14);
 		contentPane.add(lblNewLabel_1);
 		
+		JButton btnNewButton_2 = new JButton("Administracion habitaciones");
+		btnNewButton_2.setBounds(55, 132, 160, 40);
+		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Administracion de hoteles");
+		btnNewButton_3.setBounds(387, 132, 160, 40);
+		contentPane.add(btnNewButton_3);
+		
 		
 	}
 }

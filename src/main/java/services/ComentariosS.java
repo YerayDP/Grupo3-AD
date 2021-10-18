@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Clientes;
 import models.Comentarios;
 import models.Empleados;
 
 public class ComentariosS {
 
-	public static void insert(Comentarios c) throws SQLException
+	public static void insert(Comentarios c,int id) throws SQLException
 	{
 		
 	        String sql = "INSERT INTO comentarios(id_cliente,id_hotel,comentario) VALUES(?,?,?)";
@@ -20,7 +21,7 @@ public class ComentariosS {
 	        try (Connection conn = DBC.createNewDBconnection();
 	                PreparedStatement consulta = conn.prepareStatement(sql)) {
 	        		        	
-	        	consulta.setInt(1, c.getId_cliente());
+	        	consulta.setInt(1, id);
 	        	consulta.setInt(2, c.getId_hotel());
 	        	consulta.setString(3, c.getComentario());
 	            consulta.executeUpdate();
@@ -66,9 +67,9 @@ public class ComentariosS {
 	 }
 	
 	
-	public static List<String> Hoteles(Connection conexion) throws ClassNotFoundException{
-      //String sql = "SELECT * FROM users" ;
-      String sql = "SELECT id_hotel FROM reserva WHERE id_cliente = 1" ;
+	public static List<String> Hoteles(Connection conexion, String dni) throws ClassNotFoundException{
+		
+      String sql = "SELECT DISTINCT H.nombre FROM reserva R JOIN users U JOIN hoteles H WHERE U.dni = '"+dni+"' AND H.id=R.id_hotel " ;
 
       List<String> hoteles = new ArrayList<>();
       int contador = 0;
@@ -82,7 +83,7 @@ public class ComentariosS {
      	 // loop through the result set
      	 while (rs.next()) {
      		 contador++;
-     		 String a = rs.getString("id_hotel");
+     		 String a = rs.getString("nombre");
      		 hoteles.add(a);
      		 System.out.println(a);
      		 
@@ -96,7 +97,6 @@ public class ComentariosS {
 	 }
 	
 	public static List<Integer> TodosHoteles(Connection conexion) throws ClassNotFoundException{
-        //String sql = "SELECT * FROM users" ;
         String sql = "SELECT id FROM hoteles" ;
 
         List<Integer> hoteles = new ArrayList<>();
@@ -123,5 +123,46 @@ public class ComentariosS {
         return hoteles;
 
        }
+	
+	
+	public static int id(Connection conexion,String dni) throws SQLException
+	{
+		String sql = "SELECT DISTINCT id FROM users where dni='"+dni+"'" ;
+	
+		int id = 0;
+		PreparedStatement consulta = conexion.prepareStatement(sql);
+
+        //
+        ResultSet rs  = consulta.executeQuery();
+        // loop through the result set
+        while (rs.next()) {
+            id = rs.getInt("id");
+
+            System.out.println(id);
+	}
+		return id;
+}
+	
+	
+	
+	public static int id_hotel(Connection conexion,String nombre) throws SQLException
+	{
+		String sql = "SELECT DISTINCT id FROM hoteles WHERE nombre='"+nombre+"'" ;
+	
+		int id = 0;
+		PreparedStatement consulta = conexion.prepareStatement(sql);
+
+        //
+        ResultSet rs  = consulta.executeQuery();
+        // loop through the result set
+        while (rs.next()) {
+            id = rs.getInt("id");
+
+            System.out.println(id);
+	}
+		return id;
+}
+	
+	
 	
 }

@@ -26,10 +26,12 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class Valoraciones extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -89,6 +91,7 @@ public class Valoraciones extends JFrame {
 		lblNewLabel_4.setFont(new Font("Sitka Text", Font.BOLD, 12));
 		lblNewLabel_4.setBounds(477, 49, 101, 21);
 		contentPane.add(lblNewLabel_4);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -111,7 +114,7 @@ public class Valoraciones extends JFrame {
 							System.out.println(c);
 							
 							JTable table_1 = new JTable();
-					        table_1.setBounds(152, 64, 483, 170);
+					        table_1.setBounds(187, 80, 460, 290);
 					        contentPane.add(table_1);
 							
 							DefaultTableModel modelo  = (DefaultTableModel) table_1.getModel();
@@ -119,10 +122,8 @@ public class Valoraciones extends JFrame {
 					        PreparedStatement ps = null;
 					        ResultSet rs = null;
 					        Connection con = DBC.createNewDBconnection();
-					        
-					        //String dni = modelo.getValueAt(table_1.getSelectedRow(), 0).toString();
 
-					        String sql = "Select U.nombre,C.comentario from comentarios C JOIN Users U  where C.id_hotel=?";
+					        String sql = "Select DISTINCT U.nombre,C.comentario from comentarios C JOIN Users U  where C.id_hotel=?";
 
 					        ps = con.prepareStatement(sql);
 					        

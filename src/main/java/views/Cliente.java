@@ -75,7 +75,7 @@ public class Cliente extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReservaI RI;
-				RI = new ReservaI();
+				RI = new ReservaI(c);
 				setVisible(false);
 				RI.setVisible(true);
 			
@@ -92,7 +92,7 @@ public class Cliente extends JFrame {
 				
 				try {
 					setVisible(false);
-					ComentariosI v = new ComentariosI();
+					ComentariosI v = new ComentariosI(c);
 					v.setVisible(true);
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
@@ -148,7 +148,7 @@ public class Cliente extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "Select H.Nombre, R.* FROM  Users U JOIN reserva R JOIN hoteles H ON H.id = R.id_hotel WHERE U.dni= '"+c.getDni()+"' AND R.fecha_salida<(SELECT SYSDATE())";
+		String sql = "Select H.Nombre, R.* FROM  Users U JOIN reserva R JOIN hoteles H ON H.id = R.id_hotel WHERE U.dni= '"+c.getDni()+"' AND U.id=R.id_cliente AND R.fecha_salida<(SELECT SYSDATE())";
 
 		ps = con.prepareStatement(sql);
 
