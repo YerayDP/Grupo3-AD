@@ -128,13 +128,23 @@ public class ReservaI extends JFrame {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-				
-				
-
-				
-				
 							
 			}
 		});
+		
+		JButton btnNewButton_5 = new JButton("volver");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Cliente cliente = new Cliente(c);
+					setVisible(false);
+					cliente.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 	}
 }
