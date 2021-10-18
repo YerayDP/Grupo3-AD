@@ -49,6 +49,7 @@ public class HabLibres extends JFrame {
 	 * @throws SQLException 
 	 */
 	public HabLibres(JDateChooser date) throws SQLException {
+		System.out.println(date.toString());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -60,7 +61,7 @@ public class HabLibres extends JFrame {
 		ResultSet rs = null;
 		final Connection con = DBC.createNewDBconnection();
 
-		String sql = "SELECT ID FROM habitaciones WHEN ID NOT IN (SELECT id_habitacion FROM reserva WHERE '" +date+ "' BETWEEN fecha_entrada AND fecha_salida)";
+		String sql = "SELECT DISTINCT HO.nombre,H.NUMHabitacion FROM habitaciones H JOIN reserva R JOIN hoteles HO WHERE H.ID NOT IN (SELECT id_habitacion FROM reserva WHERE '" +date+ "' BETWEEN fecha_entrada AND fecha_salida)";
 
 		ps = con.prepareStatement(sql);
 
@@ -70,10 +71,9 @@ public class HabLibres extends JFrame {
 
 		int cantidadColumnas = rsMd.getColumnCount();
 
-		modelo.addColumn("ID");
-		modelo.addColumn("DNI");
-		modelo.addColumn("Nombre");
-		modelo.addColumn("Apellidos");
+		modelo.addColumn("");
+		modelo.addColumn("");
+
 
 		while (rs.next()) {
 			Object[] filas = new Object[cantidadColumnas];
