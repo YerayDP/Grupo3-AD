@@ -98,7 +98,7 @@ public class Consultar extends JFrame {
 				        Connection con = DBC.createNewDBconnection();
 
 
-				        String sql = "Select U.nombre, R.fecha_entrada, R.fecha_salida from reserva R join Users U where R.id_hotel=? AND fecha_entrada<=(SELECT SYSDATE()) AND fecha_salida>=(SELECT SYSDATE())";
+				        String sql = "Select U.nombre, R.fecha_entrada, R.fecha_salida from reserva R join Users U where R.id_hotel=? AND fecha_entrada<=(SELECT SYSDATE()) AND fecha_salida>=(SELECT SYSDATE()) AND U.id = R.id_cliente";
 
 				        ps = con.prepareStatement(sql);
 				        

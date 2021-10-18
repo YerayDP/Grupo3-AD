@@ -121,12 +121,11 @@ public class Valoraciones extends JFrame {
 					        PreparedStatement ps = null;
 					        ResultSet rs = null;
 					        Connection con = DBC.createNewDBconnection();
-
-					        String sql = "Select DISTINCT U.nombre,C.comentario from comentarios C JOIN Users U  where C.id_hotel=?";
+					       
+					        String sql = "Select DISTINCT U.nombre,C.comentario from comentarios C JOIN Users U  where C.id_hotel= '"+hotel+"' AND U.id=C.id_cliente";
 
 					        ps = con.prepareStatement(sql);
 					        
-					        ps.setInt(1,Integer.valueOf(hotel));
 
 					        rs = ps.executeQuery();
 
@@ -134,8 +133,8 @@ public class Valoraciones extends JFrame {
 
 					        int cantidadColumnas = rsMd.getColumnCount();
 
-					        modelo.addColumn("Dni");
-					        modelo.addColumn("Dni");
+					        modelo.addColumn("");
+					        modelo.addColumn("");
 
 
 					        while(rs.next())
